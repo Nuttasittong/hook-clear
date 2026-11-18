@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>คลังข้อมูลงาน พช.สงขลา (เจ้าหน้าที่)</title>
 <meta name="description" content="สำหรับเจ้าหน้าที่ — เปิดจากลิงก์ส่วนตัวใน LINE เท่านั้น">
+<link rel="icon" href="img/favicon.png">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 
@@ -230,7 +231,8 @@
   /* CDD Focus */
   .cf-panel { margin: 12px 0 4px; border-top: 4px solid #B45309; min-width: 0; }
   .cf-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .cf-head h3 { margin: 0; }
+  .cf-head h3 { margin: 0; flex: 1; min-width: 200px; }
+  .cf-art { height: 84px; width: auto; max-width: 130px; }
   .cf-sub { margin: 16px 0 8px; font-size: 15px; }
   .cf-jpt { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, #2563EB 8%, var(--card)); border: 1px solid color-mix(in srgb, #2563EB 25%, var(--line)); font-size: 14px; }
   .cf-prog { position: relative; overflow: visible; }
@@ -526,12 +528,23 @@
   .hk-map-legend i { flex: 1; height: 10px; border-radius: 999px; border: 1px solid var(--line); }
   .hk-map-info { font-size: 13px; color: var(--muted); text-align: center; min-height: 20px; }
   .hk-map-info b { color: var(--text); }
+
+  /* โลโก้กรมการพัฒนาชุมชน + ตราจังหวัดสงขลา (วางบนพื้นขาววงกลม เห็นชัดทั้งโหมดสว่าง/มืด) */
+  .hk-logos { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .hk-logos img { width: 46px; height: 46px; border-radius: 50%; background: #fff; padding: 3px; object-fit: contain;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18); }
+  .hk-mascot { display: block; object-fit: contain; pointer-events: none; user-select: none; }
 </style>
+<script>
+  // ภาพโลโก้/มาสคอต เก็บบน GitHub Pages (repo hook-clear/img — สร้างด้วย tools/build-assets.py + build-web.js)
+  window.HK_IMG = 'https://nuttasittong.github.io/hook-clear/img/';
+</script>
 
 </head>
 <body class="hk-app">
   <header class="top">
-    <div class="brand">🦉 คลังข้อมูล <span>พช.สงขลา</span></div>
+    <div class="brand" style="display:flex;align-items:center;gap:10px"><span class="hk-logos" id="logos"></span><span>คลังข้อมูล <span>พช.สงขลา</span></span></div>
+    <script>document.getElementById('logos').innerHTML = '<img src="' + HK_IMG + 'logo-cdd.webp" alt="กรมการพัฒนาชุมชน" style="width:38px;height:38px"><img src="' + HK_IMG + 'logo-songkhla.webp" alt="จังหวัดสงขลา" style="width:38px;height:38px">';</script>
     <div class="right">
       <div class="me" id="me"></div>
       <button type="button" class="theme-btn" id="theme-btn" aria-label="สลับโหมดสว่าง/มืด" title="สลับโหมดสว่าง/มืด">🌙</button>
@@ -606,7 +619,8 @@
 
     <!-- ถาม AI -->
     <section id="v-ask" class="view">
-      <div class="notice ai">🤖 ถามเป็นภาษาธรรมดา AI จะค้นข้อมูลจริงในคลังและฐานความรู้มาตอบ (ตรวจสอบตัวเลขสำคัญกับแดชบอร์ดก่อนนำไปใช้อ้างอิง)</div>
+      <div class="notice ai" style="display:flex;align-items:center;gap:12px"><img class="hk-mascot" id="ai-mascot" alt="" style="width:84px;height:84px;border-radius:14px;object-fit:cover;flex-shrink:0"><span>🤖 ถามเป็นภาษาธรรมดา AI จะค้นข้อมูลจริงในคลังและฐานความรู้มาตอบ (ตรวจสอบตัวเลขสำคัญกับแดชบอร์ดก่อนนำไปใช้อ้างอิง)</span></div>
+      <script>document.getElementById('ai-mascot').src = HK_IMG + 'm-ai.webp';</script>
       <div id="chat" class="chat"></div>
       <div class="chips" id="ask-examples"></div>
       <form id="ask-form" class="ask-form">
@@ -1486,7 +1500,8 @@ var HK = (function () {
     const iss = {};
     c.issues.forEach(x => { iss[x.key] = x; });
     const s = c.summary;
-    let html = '<div class="card cf-panel"><div class="cf-head"><h3>🎯 CDD Focus ' + c.fy + ' · ปฏิทินรายงานประเด็นเน้นย้ำ</h3>'
+    let html = '<div class="card cf-panel"><div class="cf-head"><img class="hk-mascot cf-art" src="' + HK_IMG + 'm-cdd-focus.webp" alt="">'
+      + '<h3>🎯 CDD Focus ' + c.fy + ' · ปฏิทินรายงานประเด็นเน้นย้ำ</h3>'
       + '<button type="button" class="ghost" data-cf="list">📋 ดู/แก้ทั้งหมด</button></div>'
       + '<div class="sub">ผลประเมินรายเดือน 10 เดือน = 70% ของคะแนน CDCA · ส่งตรงเวลา + หลักฐานถูกต้อง = A (ส่งช้าได้แค่ B)</div>';
     html += HK.ui.kpis([

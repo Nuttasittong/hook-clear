@@ -6,8 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ฮูก Clear · สำนักงานพัฒนาชุมชนจังหวัดสงขลา</title>
 <meta name="description" content="ข้อมูลบริการ พช. · ข้อมูล จปฐ. · โครงการและงบประมาณ · ติดต่อสำนักงานพัฒนาชุมชนอำเภอ จังหวัดสงขลา">
+<link rel="icon" href="img/favicon.png">
 <meta property="og:title" content="🦉 ฮูก Clear · พช.สงขลา">
 <meta property="og:description" content="บริการและข้อมูลพัฒนาชุมชนจังหวัดสงขลา ในที่เดียว">
+<meta property="og:image" content="https://nuttasittong.github.io/hook-clear/img/og.jpg">
 <meta name="theme-color" content="#0B2A78">
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
@@ -176,7 +178,17 @@
   .hk-map-legend i { flex: 1; height: 10px; border-radius: 999px; border: 1px solid var(--line); }
   .hk-map-info { font-size: 13px; color: var(--muted); text-align: center; min-height: 20px; }
   .hk-map-info b { color: var(--text); }
+
+  /* โลโก้กรมการพัฒนาชุมชน + ตราจังหวัดสงขลา (วางบนพื้นขาววงกลม เห็นชัดทั้งโหมดสว่าง/มืด) */
+  .hk-logos { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .hk-logos img { width: 46px; height: 46px; border-radius: 50%; background: #fff; padding: 3px; object-fit: contain;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18); }
+  .hk-mascot { display: block; object-fit: contain; pointer-events: none; user-select: none; }
 </style>
+<script>
+  // ภาพโลโก้/มาสคอต เก็บบน GitHub Pages (repo hook-clear/img — สร้างด้วย tools/build-assets.py + build-web.js)
+  window.HK_IMG = 'https://nuttasittong.github.io/hook-clear/img/';
+</script>
 
 <style>
   /* ออกแบบให้ผู้สูงอายุและวัยรุ่นใช้ร่วมกัน: ปุ่มใหญ่ ตัวอักษรใหญ่ ข้อความสั้น รายละเอียดพับเก็บ ปรับขนาดตัวอักษรได้ 3 ระดับ */
@@ -190,15 +202,26 @@
 
   /* ส่วนหัว */
   header.hero { background: var(--hero); color: #fff; padding: 16px 16px 18px; position: relative; overflow: hidden; }
-  header.hero::after { content: '🦉'; position: absolute; right: -12px; bottom: -36px; font-size: 140px; opacity: .08; }
   .wrap { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  /* มือถือ: แถวบน = โลโก้ 2 ดวง + ปุ่ม · แถวล่าง = ชื่อเต็มความกว้าง | จอใหญ่: โลโก้ · ชื่อ · ปุ่ม ในแถวเดียว */
+  .hero-top { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "logos tools" "ttl ttl"; align-items: center; gap: 10px 8px; }
+  .hero-top .hk-logos { grid-area: logos; }
+  .hero-top .ttl { grid-area: ttl; min-width: 0; }
+  .hero-top .tools { grid-area: tools; justify-self: end; }
+  .hero-top .hk-logos img { width: 50px; height: 50px; }
+  @media (min-width: 640px) {
+    .hero-top { grid-template-columns: auto 1fr auto; grid-template-areas: "logos ttl tools"; gap: 12px; }
+    .hero-top .hk-logos img { width: 58px; height: 58px; }
+  }
+  .hero-art { display: none; }
+  @media (min-width: 760px) { .hero-art { display: block; position: absolute; right: max(16px, calc(50% - 560px)); bottom: -6px; height: 150px; z-index: 0; opacity: .95; }
+    .hero-top .tools { margin-right: 190px; } .hero-kpis { margin-right: 190px; } }
   header.hero h1 { margin: 0; font-size: 1.6rem; font-weight: 600; line-height: 1.2; }
   header.hero p { margin: 2px 0 0; opacity: .9; font-size: .9rem; }
   .tools { display: flex; gap: 6px; flex-shrink: 0; }
-  .tools button { min-width: 46px; height: 46px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .14);
+  .tools button { min-width: 42px; height: 46px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .14);
     color: #fff; font-family: 'Kanit', sans-serif; font-size: 1rem; cursor: pointer; padding: 0 8px; }
-  .tools .theme-btn { width: 46px; border-radius: 14px; }
+  .tools .theme-btn { width: 42px; border-radius: 14px; }
   .hero-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
   .hero-kpis > div { background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .22); border-radius: 14px; padding: 8px 10px; text-align: center; }
   .hero-kpis b { display: block; font-family: 'Kanit', sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
@@ -224,6 +247,14 @@
   .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
   .tile:active { transform: scale(.97); }
   .tile .ic { font-size: 2.5rem; line-height: 1.1; }
+  .tile .art { height: 88px; width: 100%; object-fit: contain; margin-bottom: 2px; }
+  .tile .art.box { width: auto; max-width: 100%; border-radius: 14px; }
+  @media (min-width: 960px) { .tile .art { height: 104px; } }
+  .vhead { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .vhead > div { min-width: 0; }
+  .vhead img { height: 96px; width: auto; max-width: 42%; object-fit: contain; flex-shrink: 0; }
+  .foot-logos { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; }
+  .foot-logos .hk-logos img { width: 40px; height: 40px; }
   .tile b { font-family: 'Kanit', sans-serif; font-size: 1.08rem; font-weight: 500; line-height: 1.3; }
   .tile small { font-size: .82rem; color: var(--muted); line-height: 1.3; }
   .quick { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 10px; margin-top: 14px; }
@@ -312,8 +343,9 @@
 </head>
 <body>
 <header class="hero"><div class="wrap">
+  <img class="hk-mascot hero-art" id="hero-art" alt="">
   <div class="hero-top">
-    <div><h1>🦉 ฮูก Clear</h1><p>สำนักงานพัฒนาชุมชนจังหวัดสงขลา</p></div>
+    <span class="hk-logos" id="logos"></span><div class="ttl"><h1>ฮูก Clear</h1><p>สำนักงานพัฒนาชุมชนจังหวัดสงขลา</p></div>
     <div class="tools">
       <button type="button" id="fs-down" aria-label="ลดขนาดตัวอักษร" title="ลดขนาดตัวอักษร">ก−</button>
       <button type="button" id="fs-up" aria-label="เพิ่มขนาดตัวอักษร" title="เพิ่มขนาดตัวอักษร">ก+</button>
@@ -947,10 +979,19 @@ function main(D) { // D = ข้อมูลสาธารณะ (ฝังจ�
       + (t.rest ? '<details class="more"><summary>📖 อ่านรายละเอียด</summary><p>' + esc(t.rest) + '</p></details>' : '')
       + '</div></details>';
   }
+  var IMG = window.HK_IMG || '';
+  // มาสคอตประจำหน้า = ภาพเดียวกับปุ่ม Rich Menu ใน LINE (เห็นภาพเดียวกัน = หน้าที่เดียวกัน)
+  var ART = { services: 'm-services', jpt: 'm-jpt', projects: 'm-projects', knn: 'm-knn', districts: 'm-districts', help: 'm-help',
+    activities: 'm-activities', about: 'm-about', integrity: 'm-integrity' };
+  function art(key, cls) {
+    return ART[key] ? '<img class="hk-mascot ' + (cls || '') + '" src="' + IMG + ART[key] + '.webp" alt="" loading="lazy" onerror="this.remove()">' : '';
+  }
   function view(id, title, sub, inner) {
     return '<section class="view" id="v-' + id + '"><button type="button" class="back" data-go="home">◀ หน้าแรก</button>'
-      + '<h2>' + title + '</h2>' + (sub ? '<p class="sub">' + sub + '</p>' : '') + inner + '</section>';
+      + '<div class="vhead"><div><h2>' + title + '</h2>' + (sub ? '<p class="sub">' + sub + '</p>' : '') + '</div>' + art(id) + '</div>' + inner + '</section>';
   }
+  $('#logos').innerHTML = '<img src="' + IMG + 'logo-cdd.webp" alt="กรมการพัฒนาชุมชน"><img src="' + IMG + 'logo-songkhla.webp" alt="จังหวัดสงขลา">';
+  $('#hero-art').src = IMG + 'm-welcome.webp';
 
   /* ---------- ตัวเลขเด่น 3 ตัว (จาก จปฐ. ที่เผยแพร่แล้ว) ---------- */
   var J = D.jpt || [];
@@ -989,7 +1030,8 @@ function main(D) { // D = ข้อมูลสาธารณะ (ฝังจ�
       + '</div>';
   }
   html += '<div class="home-grid">' + TILES.map(function (t) {
-    return '<button type="button" class="tile" data-go="' + t[0] + '" style="--c:' + t[4] + '"><span class="ic" aria-hidden="true">' + t[1] + '</span><b>' + t[2] + '</b><small>' + esc(t[3]) + '</small></button>';
+    var pic = ART[t[0]] ? '<img class="hk-mascot art' + (t[0] === 'jpt' ? ' box' : '') + '" src="' + IMG + ART[t[0]] + '.webp" alt="" onerror="this.nextElementSibling.hidden=false;this.remove()">' : '';
+    return '<button type="button" class="tile" data-go="' + t[0] + '" style="--c:' + t[4] + '">' + pic + '<span class="ic" aria-hidden="true"' + (pic ? ' hidden' : '') + '>' + t[1] + '</span><b>' + t[2] + '</b><small>' + esc(t[3]) + '</small></button>';
   }).join('') + '</div>';
   html += '<div class="quick">' + linkBtn('tel:' + TEL, '📞 โทรสำนักงาน 074-311674')
     + (D.lineUrl ? linkBtn(D.lineUrl, '💚 คุยกับฮูกใน LINE', 'green') : '') + goBtn('districts', '📍 ติดต่ออำเภอใกล้บ้าน', 'alt') + '</div>';
@@ -1077,7 +1119,8 @@ function main(D) { // D = ข้อมูลสาธารณะ (ฝังจ�
     D.integrity.length ? D.integrity.map(function (x) { return acc(x, { color: '#0F766E' }); }).join('') : '<div class="empty">อยู่ระหว่างรวบรวมข้อมูล</div>');
 
   $('#main').innerHTML = html;
-  $('#foot').innerHTML = 'ข้อมูล ณ ' + esc(D.updated) + ' · ไม่เก็บข้อมูลส่วนบุคคลของผู้ใช้ · <a href="https://sites.google.com/view/pdpacdd">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a>';
+  $('#foot').innerHTML = '<div class="foot-logos"><span class="hk-logos">' + $('#logos').innerHTML + '</span><div style="text-align:left">สำนักงานพัฒนาชุมชนจังหวัดสงขลา<br>กรมการพัฒนาชุมชน กระทรวงมหาดไทย</div></div>'
+    + 'ข้อมูล ณ ' + esc(D.updated) + ' · ไม่เก็บข้อมูลส่วนบุคคลของผู้ใช้ · <a href="https://sites.google.com/view/pdpacdd">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a>';
   $('#bar').innerHTML = '<button type="button" data-go="home"><span class="i">🏠</span>หน้าแรก</button>'
     + '<button type="button" data-go="services"><span class="i">🧭</span>บริการ</button>'
     + '<a href="tel:' + TEL + '"><span class="i">📞</span>โทร</a>'
@@ -1090,7 +1133,9 @@ function main(D) { // D = ข้อมูลสาธารณะ (ฝังจ�
     if (!g) { $('#svc-list').innerHTML = '<div class="empty">อยู่ระหว่างรวบรวมข้อมูล</div>'; return; }
     curGrp = g.key;
     Array.prototype.forEach.call(document.querySelectorAll('[data-grp]'), function (b) { b.classList.toggle('on', b.getAttribute('data-grp') === g.key); });
-    $('#svc-list').innerHTML = '<h2 style="font-size:1.2rem">' + g.emoji + ' ' + esc(g.name) + '</h2>'
+    var gArt = { product: 'm-thai', model: 'm-knn', people: 'm-owl-cheer', fund: 'm-heart', data: 'm-search2', poverty: 'm-help' }[g.key];
+    $('#svc-list').innerHTML = '<div class="vhead"><h2 style="font-size:1.2rem">' + g.emoji + ' ' + esc(g.name) + '</h2>'
+      + (gArt ? '<img class="hk-mascot" src="' + IMG + gArt + '.webp" alt="" loading="lazy" onerror="this.remove()" style="height:84px">' : '') + '</div>'
       + D.services.filter(function (s) { return s.group === g.key; }).map(function (s) { return acc(s, { color: g.color, contact: true }); }).join('');
   }
 
