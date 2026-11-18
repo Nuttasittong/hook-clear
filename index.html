@@ -214,18 +214,14 @@
     .hero-top .hk-logos img { width: 58px; height: 58px; }
   }
   .hero-art { display: none; }
-  @media (min-width: 760px) { .hero-art { display: block; position: absolute; right: max(16px, calc(50% - 560px)); bottom: -6px; height: 150px; z-index: 0; opacity: .95; }
-    .hero-top .tools { margin-right: 190px; } .hero-kpis { margin-right: 190px; } }
+  @media (min-width: 760px) { .hero-art { display: block; position: absolute; right: max(16px, calc(50% - 560px)); bottom: -2px; height: 98px; z-index: 0; opacity: .95; }
+    .hero-top .tools { margin-right: 150px; } }
   header.hero h1 { margin: 0; font-size: 1.6rem; font-weight: 600; line-height: 1.2; }
   header.hero p { margin: 2px 0 0; opacity: .9; font-size: .9rem; }
   .tools { display: flex; gap: 6px; flex-shrink: 0; }
   .tools button { min-width: 42px; height: 46px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .14);
     color: #fff; font-family: 'Kanit', sans-serif; font-size: 1rem; cursor: pointer; padding: 0 8px; }
   .tools .theme-btn { width: 42px; border-radius: 14px; }
-  .hero-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
-  .hero-kpis > div { background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .22); border-radius: 14px; padding: 8px 10px; text-align: center; }
-  .hero-kpis b { display: block; font-family: 'Kanit', sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
-  .hero-kpis span { font-size: .78rem; opacity: .9; }
 
   main { max-width: 1100px; margin: 0 auto; padding: 14px 16px 24px; }
   .view { display: none; }
@@ -352,7 +348,6 @@
       <button type="button" class="theme-btn" id="theme-btn" aria-label="สลับโหมดสว่าง/มืด" title="สลับโหมดสว่าง/มืด">🌙</button>
     </div>
   </div>
-  <div class="hero-kpis" id="hero-kpis"></div>
 </div></header>
 <main id="main"></main>
 <footer id="foot"></footer>
@@ -993,17 +988,7 @@ function main(D) { // D = ข้อมูลสาธารณะ (ฝังจ�
   $('#logos').innerHTML = '<img src="' + IMG + 'logo-cdd.webp" alt="กรมการพัฒนาชุมชน"><img src="' + IMG + 'logo-songkhla.webp" alt="จังหวัดสงขลา">';
   $('#hero-art').src = IMG + 'm-welcome.webp';
 
-  /* ---------- ตัวเลขเด่น 3 ตัว (จาก จปฐ. ที่เผยแพร่แล้ว) ---------- */
-  var J = D.jpt || [];
-  function jd(kind) { return (J.find(function (x) { return x.detail.kind === kind; }) || {}).detail; }
-  var jSum = jd('jpt_summary'), jAge = jd('jpt_age'), jHap = jd('jpt_happy'), jInc = jd('jpt_income');
-  var hero = [];
-  if (jAge || jSum) hero.push([n0((jAge || jSum).households), 'ครัวเรือน']);
-  if (jHap || (jSum && jSum.happiness != null)) hero.push([Number(jHap ? jHap.avg : jSum.happiness).toFixed(1) + '<small style="font-size:.7em;opacity:.8">/10</small>', 'ความสุข']);
-  if (jInc) hero.push([(Math.round(jInc.avgHh / 1000)).toLocaleString('th-TH') + '<small style="font-size:.7em;opacity:.8">พัน</small>', 'รายได้เฉลี่ย/ปี']);
-  else if (jAge) hero.push([n0(jAge.population), 'ประชากร']);
-  if (hero.length < 3) hero.push([n0(D.districts.length), 'อำเภอ']);
-  $('#hero-kpis').innerHTML = hero.slice(0, 3).map(function (k) { return '<div><b>' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('');
+  var J = D.jpt || []; // รายงาน จปฐ. ที่เผยแพร่แล้ว (หน้า "ข้อมูล จปฐ.")
 
   /* ---------- หน้าแรก ---------- */
   var K = D.knnTours || [];
