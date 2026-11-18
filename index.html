@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<base target="_blank">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ฮูก Clear · สำนักงานพัฒนาชุมชนจังหวัดสงขลา</title>
+<meta name="description" content="ข้อมูลบริการ พช. · ข้อมูล จปฐ. · โครงการและงบประมาณ · ติดต่อสำนักงานพัฒนาชุมชนอำเภอ จังหวัดสงขลา">
+<meta property="og:title" content="🦉 ฮูก Clear · พช.สงขลา">
+<meta property="og:description" content="บริการและข้อมูลพัฒนาชุมชนจังหวัดสงขลา ในที่เดียว">
+<meta name="theme-color" content="#0B2A78">
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+<script>try { var t = localStorage.getItem('hk-theme'); if (t) document.documentElement.setAttribute('data-theme', t); var f = localStorage.getItem('hk-fs'); if (f) document.documentElement.setAttribute('data-fs', f); } catch (e) {}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  /*
+   * HookTheme.html — ธีมกลาง "🦉ฮูก Clear" (กรมท่า-ทอง) สำหรับแดชบอร์ดคลังข้อมูลและหน้าเว็บประชาชน
+   * โหมดมืด: ตามเครื่องอัตโนมัติ หรือกดปุ่มสลับ (data-theme="light" | "dark" บน <html>)
+   * Adaptive: มือถือ 1 คอลัมน์ · แท็บเล็ต 2 คอลัมน์ · จอคอม ≥1024px เมนูด้านข้าง + หลายคอลัมน์ · การ์ดปรับตามความกว้างของตัวเอง (container query)
+   */
+  :root {
+    --hk-navy: #0b2a78; --hk-navy-2: #1d4ed8; --hk-amber: #f59e0b; --hk-amber-2: #fbbf24;
+    --bg: #f3f6fb; --bg-2: #e9effa; --card: #ffffff; --card-2: #f6f8fd; --text: #0f172a; --muted: #64748b; --line: #e2e8f0;
+    --brand: #0b2a78; --brand-2: #1d4ed8; --ok: #059669; --warn: #d97706; --bad: #dc2626; --ai: #7c3aed;
+    --male: #3b82f6; --female: #ec4899; --accent-soft: #fff7e6;
+    --shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 6px 18px rgba(15, 23, 42, .06);
+    --shadow-lg: 0 10px 30px rgba(11, 42, 120, .14);
+    --radius: 16px; --radius-sm: 10px;
+    --hero: linear-gradient(135deg, #0b2a78 0%, #1d4ed8 60%, #3b82f6 100%);
+    --map-lo: #dbeafe; --map-hi: #1e3a8a; --map-none: #e5e7eb; --map-ink-hi: #fff; --map-halo-hi: rgba(15,23,42,.7); --map-ink-lo: #0f172a; --map-halo-lo: rgba(255,255,255,.8); --deep-word: "สีเข้ม";
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1220; --bg-2: #0f1a2e; --card: #111c31; --card-2: #16233d; --text: #e5edf9; --muted: #94a3b8; --line: #23324f;
+      --brand: #93c5fd; --brand-2: #60a5fa; --accent-soft: #2a2110;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35); --shadow-lg: 0 10px 30px rgba(0, 0, 0, .5);
+      --hero: linear-gradient(135deg, #0b1f5c 0%, #1e3a8a 60%, #1d4ed8 100%);
+      --map-lo: #1e293b; --map-hi: #60a5fa; --map-none: #334155; --map-ink-hi: #0b1220; --map-halo-hi: rgba(255,255,255,.55); --map-ink-lo: #e2e8f0; --map-halo-lo: rgba(2,6,23,.75); --deep-word: "สีสว่าง";
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220; --bg-2: #0f1a2e; --card: #111c31; --card-2: #16233d; --text: #e5edf9; --muted: #94a3b8; --line: #23324f;
+    --brand: #93c5fd; --brand-2: #60a5fa; --accent-soft: #2a2110;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35); --shadow-lg: 0 10px 30px rgba(0, 0, 0, .5);
+    --hero: linear-gradient(135deg, #0b1f5c 0%, #1e3a8a 60%, #1d4ed8 100%);
+    --map-lo: #1e293b; --map-hi: #60a5fa; --map-none: #334155; --map-ink-hi: #0b1220; --map-halo-hi: rgba(255,255,255,.55); --map-ink-lo: #e2e8f0; --map-halo-lo: rgba(2,6,23,.75); --deep-word: "สีสว่าง";
+    color-scheme: dark;
+  }
+
+  html, body { background: var(--bg) !important; color: var(--text); }
+  body { font-family: 'Sarabun', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, .k, .brand { font-family: 'Kanit', 'Sarabun', sans-serif; }
+  a { color: var(--brand-2); }
+  .tnum, b, .val { font-variant-numeric: tabular-nums; }
+
+  /* ปุ่มสลับโหมด */
+  .theme-btn { border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .12); color: #fff; width: 38px; height: 38px;
+    border-radius: 12px; cursor: pointer; font-size: 18px; display: inline-grid; place-items: center; }
+  .theme-btn:hover { background: rgba(255, 255, 255, .22); }
+
+  /* ======================= แดชบอร์ดเจ้าหน้าที่ (body.hk-app) ======================= */
+  .hk-app header.top { background: var(--hero); padding: 12px 18px; box-shadow: var(--shadow-lg); gap: 12px; }
+  .hk-app header.top .brand { font-size: 19px; letter-spacing: .2px; }
+  .hk-app header.top .right { display: flex; align-items: center; gap: 10px; }
+  .hk-app main { max-width: 1480px; padding: 16px 18px 104px; }
+
+  .hk-app .card, .hk-app .table-wrap { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: var(--radius); }
+  .hk-app .card .sub, .hk-app .hint, .hk-app .foot { color: var(--muted); }
+  .hk-app select, .hk-app input[type=text], .hk-app input[type=search], .hk-app input[type=number], .hk-app input[type=date], .hk-app input:not([type]), .hk-app textarea {
+    background: var(--card); color: var(--text); border-color: var(--line); border-radius: 12px; }
+  .hk-app button.ghost, .hk-app .chip, .hk-app button.icon { background: var(--card); color: var(--text); border-color: var(--line); }
+  .hk-app button.primary { background: var(--hk-navy); border-radius: 12px; box-shadow: 0 4px 12px rgba(11, 42, 120, .25); }
+  :root[data-theme="dark"] .hk-app button.primary { background: #1d4ed8; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hk-app button.primary { background: #1d4ed8; } }
+  .hk-app .seg { background: var(--bg-2); border: 1px solid var(--line); }
+  .hk-app .seg button.on { background: var(--card); color: var(--brand); }
+  .hk-app .notice { background: var(--accent-soft); border-color: rgba(245, 158, 11, .35); color: var(--warn); }
+  .hk-app .notice.ai { background: rgba(124, 58, 237, .08); border-color: rgba(124, 58, 237, .3); color: var(--ai); }
+  .hk-app table.data th { background: var(--card-2); color: var(--muted); }
+  .hk-app table.data td, .hk-app table.data th { border-color: var(--line); }
+  .hk-app table.data tr:hover td { background: var(--card-2); }
+  .hk-app #busy { background: rgba(2, 6, 23, .45); }
+
+  /* ตัวเลขเด่น (hero tiles) */
+  .hk-app .tiles.hl { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 6px 0 14px; }
+  .hk-app .tiles.hl .tile { position: relative; overflow: hidden; border: 1px solid var(--line); border-top: 0; background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 14px 16px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .hk-app .tiles.hl .tile::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--hk-amber), var(--hk-navy-2)); }
+  .hk-app .tiles.hl .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .hk-app .tiles.hl .tile b { font-family: 'Kanit', sans-serif; font-weight: 600; font-size: 26px; color: var(--brand); display: block; }
+  .hk-app .tiles.hl .tile span { color: var(--muted); font-size: 13px; }
+  .hk-app .tiles.hl .tile .ic { font-size: 22px; opacity: .9; }
+  .hk-app .tiles .tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+
+  /* กลุ่ม + การ์ด */
+  .hk-app .group-title { font-family: 'Kanit', sans-serif; font-weight: 600; font-size: 18px; color: var(--text); margin: 26px 0 10px; }
+  .hk-app .group-title::after { background: var(--line); }
+  .hk-app .svc-title { font-family: 'Kanit', sans-serif; font-weight: 500; color: var(--brand); font-size: 16px; margin: 14px 0 8px; }
+  .hk-app .mod-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 14px; }
+  .hk-app .mod-card { transition: transform .15s, box-shadow .15s; }
+  .hk-app .mod-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .hk-app .kv { border-color: var(--line); }
+  .hk-app .bar-track { background: var(--bg-2); border-radius: 999px; }
+  .hk-app .bar-fill { background: linear-gradient(90deg, var(--hk-navy-2), #60a5fa); border-radius: 999px; }
+  .hk-app .bar-fill.warn { background: linear-gradient(90deg, #f97316, var(--hk-amber-2)); }
+  .hk-app .fd-box { background: var(--card-2); border-color: var(--line); border-radius: var(--radius); }
+  .hk-app .fd-sum { background: var(--card); border: 1px solid var(--line); }
+  .hk-app .fd-bar { border-left-color: var(--hk-amber); }
+  .hk-app .badge { background: rgba(29, 78, 216, .1); color: var(--brand); }
+
+  /* แดชบอร์ด จปฐ. (ปรับตามความกว้างของการ์ด) */
+  .hk-app .fd-card { container-type: inline-size; }
+  .hk-app .jpt-kpis > div { background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; }
+  .hk-app .jpt-kpis b { color: var(--brand); font-family: 'Kanit', sans-serif; font-weight: 600; font-size: 24px; }
+  .jpt-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 12px; }
+  .jpt-panel { background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; padding: 12px; min-width: 0; }
+  .jpt-panel h4 { margin: 0 0 8px; font-family: 'Kanit', sans-serif; font-weight: 500; font-size: 15px; color: var(--text); }
+  .jpt-panel .chart-box { position: relative; }
+  @container (min-width: 760px) {
+    .jpt-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+    .jpt-grid.even { grid-template-columns: 1fr 1fr; }
+  }
+  .hk-app .jpt-cat { background: var(--card); border: 1px solid var(--line); }
+  .hk-app .jpt-cat.ok { background: rgba(5, 150, 105, .08); }
+  .hk-app .jpt-note { background: var(--accent-soft); color: var(--text); }
+  .hk-app .jpt-table table th, .hk-app .jpt-table table td { border-color: var(--line); }
+  .hk-app .jpt-table tr.bad td { background: rgba(249, 115, 22, .08); }
+
+  /* เมนู: มือถือ/แท็บเล็ต = ด้านล่าง · จอคอม = ด้านซ้าย */
+  .hk-app nav.bottom { background: var(--card); border-top-color: var(--line); box-shadow: 0 -4px 16px rgba(15, 23, 42, .06); }
+  .hk-app nav.bottom button { color: var(--muted); }
+  .hk-app nav.bottom button.on { color: var(--brand); }
+  .hk-app nav.bottom button.add b { background: var(--hk-navy); box-shadow: 0 6px 14px rgba(11, 42, 120, .35); }
+  .hk-app nav.bottom .nav-brand { display: none; }
+  @media (min-width: 640px) {
+    .hk-app .filters { grid-template-columns: repeat(auto-fit, minmax(200px, 260px)); }
+  }
+  @media (min-width: 1024px) {
+    .hk-app nav.bottom { top: 0; bottom: 0; right: auto; width: 228px; grid-auto-flow: row; grid-auto-rows: max-content; align-content: start; gap: 4px;
+      padding: 76px 12px 16px; border-top: 0; border-right: 1px solid var(--line); box-shadow: none; z-index: 15; }
+    .hk-app nav.bottom button { display: flex; align-items: center; gap: 12px; text-align: left; padding: 10px 14px; border-radius: 12px; font-size: 15px; }
+    .hk-app nav.bottom button b { display: inline; font-size: 18px; }
+    .hk-app nav.bottom button span { font-size: 15px; }
+    .hk-app nav.bottom button:hover { background: var(--bg-2); }
+    .hk-app nav.bottom button.on { background: rgba(29, 78, 216, .1); }
+    .hk-app nav.bottom button.add b { width: auto; height: auto; margin: 0; background: none; color: var(--brand); box-shadow: none; }
+    .hk-app nav.bottom .nav-brand { display: block; position: absolute; left: 0; right: 0; bottom: 16px; padding: 0 18px; font-size: 12px; color: var(--muted); }
+    .hk-app header.top { z-index: 20; }
+    .hk-app main { margin-left: 228px; padding: 20px 28px 40px; }
+    .hk-app .mod-grid { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+  }
+  @media (min-width: 1600px) { .hk-app main { max-width: none; } }
+  .tablewrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+  .mod-grid > *, .jpt-grid > *, .card { min-width: 0; }
+  table.heat td, table.heat th { padding: 6px 7px; font-size: 12px; white-space: nowrap; }
+  .hk-prog { height: 12px; border-radius: 999px; background: var(--line); overflow: hidden; margin: 12px 0 2px; }
+  .hk-prog i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--hk-amber), var(--brand)); }
+  /* แผนที่ 16 อำเภอ */
+  .hk-map { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .hk-map-svg { width: 100%; max-width: 340px; max-height: 540px; height: auto; display: block; }
+  .hk-map-svg path { stroke: var(--card); stroke-width: 1.1; stroke-linejoin: round; cursor: pointer; transition: opacity .15s; }
+  .hk-map-svg path:hover, .hk-map-svg path.on { stroke: var(--hk-amber); stroke-width: 2.4; }
+  .hk-map-lbl.t-hi { fill: var(--map-ink-hi); stroke: var(--map-halo-hi); }
+  .hk-map-lbl.t-lo { fill: var(--map-ink-lo); stroke: var(--map-halo-lo); }
+  .hk-map-lbl.t-none { fill: var(--muted); stroke: var(--card); }
+  .hk-deep::after { content: var(--deep-word); }
+  .stat-map { margin-top: 8px; }
+  .stat-map summary { cursor: pointer; color: var(--brand); font-size: 13px; }
+  .stat-map .hk-map { margin-top: 8px; }
+  .hk-map-lbl { font: 600 10.5px 'Sarabun', sans-serif; text-anchor: middle; dominant-baseline: middle; pointer-events: none; paint-order: stroke; stroke-width: 2.6px; stroke-linejoin: round; }
+  .hk-lake { font: italic 9px 'Sarabun', sans-serif; fill: var(--muted); text-anchor: middle; pointer-events: none; }
+  .hk-map-legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); width: 100%; max-width: 300px; }
+  .hk-map-legend i { flex: 1; height: 10px; border-radius: 999px; border: 1px solid var(--line); }
+  .hk-map-info { font-size: 13px; color: var(--muted); text-align: center; min-height: 20px; }
+  .hk-map-info b { color: var(--text); }
+</style>
+
+<style>
+  /* ออกแบบให้ผู้สูงอายุและวัยรุ่นใช้ร่วมกัน: ปุ่มใหญ่ ตัวอักษรใหญ่ ข้อความสั้น รายละเอียดพับเก็บ ปรับขนาดตัวอักษรได้ 3 ระดับ */
+  * { box-sizing: border-box; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+  html[data-fs="1"] { font-size: 19px; }
+  html[data-fs="2"] { font-size: 21px; }
+  body { margin: 0; line-height: 1.6; padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  button, .btn, .tile, summary { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 3px solid var(--hk-amber); outline-offset: 2px; }
+
+  /* ส่วนหัว */
+  header.hero { background: var(--hero); color: #fff; padding: 16px 16px 18px; position: relative; overflow: hidden; }
+  header.hero::after { content: '🦉'; position: absolute; right: -12px; bottom: -36px; font-size: 140px; opacity: .08; }
+  .wrap { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  header.hero h1 { margin: 0; font-size: 1.6rem; font-weight: 600; line-height: 1.2; }
+  header.hero p { margin: 2px 0 0; opacity: .9; font-size: .9rem; }
+  .tools { display: flex; gap: 6px; flex-shrink: 0; }
+  .tools button { min-width: 46px; height: 46px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .14);
+    color: #fff; font-family: 'Kanit', sans-serif; font-size: 1rem; cursor: pointer; padding: 0 8px; }
+  .tools .theme-btn { width: 46px; border-radius: 14px; }
+  .hero-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .hero-kpis > div { background: rgba(255, 255, 255, .13); border: 1px solid rgba(255, 255, 255, .22); border-radius: 14px; padding: 8px 10px; text-align: center; }
+  .hero-kpis b { display: block; font-family: 'Kanit', sans-serif; font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
+  .hero-kpis span { font-size: .78rem; opacity: .9; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 14px 16px 24px; }
+  .view { display: none; }
+  .view.on { display: block; animation: fadein .18s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* หน้าแรก: ปุ่มใหญ่ */
+  .camp { background: color-mix(in srgb, #F59E0B 15%, var(--card)); border: 1px solid color-mix(in srgb, #F59E0B 45%, var(--line)); border-radius: 18px;
+    padding: 12px 16px; margin-bottom: 14px; }
+  .camp b { font-family: 'Kanit', sans-serif; font-weight: 500; font-size: 1.02rem; }
+  .camp .hk-prog { margin: 8px 0 2px; }
+  .camp small { color: var(--muted); font-size: .85rem; }
+  .home-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 640px) { .home-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 960px) { .home-grid { gap: 16px; } .tile { min-height: 150px; } }
+  .tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 128px; padding: 14px 10px;
+    background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--c, var(--brand)); border-radius: 20px; box-shadow: var(--shadow);
+    color: var(--text); cursor: pointer; font: inherit; text-align: center; transition: transform .12s, box-shadow .12s; }
+  .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .tile:active { transform: scale(.97); }
+  .tile .ic { font-size: 2.5rem; line-height: 1.1; }
+  .tile b { font-family: 'Kanit', sans-serif; font-size: 1.08rem; font-weight: 500; line-height: 1.3; }
+  .tile small { font-size: .82rem; color: var(--muted); line-height: 1.3; }
+  .quick { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 10px; margin-top: 14px; }
+
+  /* ปุ่ม */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 10px 18px; border-radius: 16px; border: 0;
+    background: var(--hk-navy); color: #fff; font-family: 'Kanit', sans-serif; font-size: 1rem; text-decoration: none; cursor: pointer; text-align: center; line-height: 1.3; }
+  .btn.alt { background: var(--bg-2); color: var(--text); border: 1px solid var(--line); }
+  .btn.green { background: #06C755; }
+  .btn.amber { background: #D97706; }
+  .btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 8px; margin-top: 12px; }
+
+  /* หน้าย่อย */
+  .back { display: inline-flex; align-items: center; gap: 6px; min-height: 48px; padding: 6px 16px 6px 10px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--card); color: var(--text); font-family: 'Kanit', sans-serif; font-size: 1rem; cursor: pointer; margin-bottom: 10px; }
+  .view h2 { font-size: 1.45rem; font-weight: 600; margin: 4px 0 2px; color: var(--text); }
+  .view .sub { color: var(--muted); font-size: .9rem; margin: 0 0 12px; }
+  .lead { font-size: 1rem; margin: 0; }
+  .meta { color: var(--muted); font-size: .85rem; }
+  .empty { color: var(--muted); background: var(--card); border-radius: 16px; border: 1px dashed var(--line); padding: 18px; text-align: center; }
+
+  /* รายการพับได้ (หัวข้อเป็นปุ่มใหญ่) */
+  .acc { background: var(--card); border: 1px solid var(--line); border-left: 6px solid var(--c, var(--brand)); border-radius: 16px; margin-bottom: 10px; box-shadow: var(--shadow); }
+  .acc > summary { list-style: none; display: flex; align-items: center; gap: 10px; min-height: 60px; padding: 10px 14px; cursor: pointer;
+    font-family: 'Kanit', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--text); line-height: 1.35; }
+  .acc > summary::-webkit-details-marker { display: none; }
+  .acc > summary::after { content: '›'; margin-left: auto; font-size: 1.6rem; color: var(--muted); transition: transform .15s; }
+  .acc[open] > summary::after { transform: rotate(90deg); }
+  .acc > summary .e { font-size: 1.5rem; }
+  .acc .in { padding: 0 16px 16px; }
+  .more { margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 6px; }
+  .more > summary { cursor: pointer; font-family: 'Kanit', sans-serif; color: var(--brand); min-height: 44px; display: flex; align-items: center; font-size: .98rem; }
+  .more p { white-space: pre-line; margin: 4px 0 0; font-size: .95rem; }
+
+  /* บริการ: ปุ่มหมวด */
+  .grp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+  @media (min-width: 760px) { .grp-grid { grid-template-columns: repeat(3, 1fr); } }
+  .grp-grid .tile { min-height: 96px; }
+  .grp-grid .tile.on { background: color-mix(in srgb, var(--c) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--c); }
+  .stat { margin-top: 10px; }
+  .card { background: var(--card); border-radius: 18px; padding: 14px 16px; box-shadow: var(--shadow); border: 1px solid var(--line); min-width: 0; }
+  .card.wide { grid-column: 1 / -1; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px; }
+  .card h3 { margin: 4px 0 4px; font-size: 1.08rem; font-weight: 500; color: var(--brand); }
+  .card img { width: 100%; border-radius: 12px; margin-bottom: 8px; aspect-ratio: 20/13; object-fit: cover; }
+  .clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin: 4px 0 0; }
+
+  /* อำเภอ */
+  .dist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 10px; }
+  .dist-grid .card h3 { font-size: 1.15rem; }
+
+  /* ตาราง/กราฟ (HookCharts) */
+  .tablewrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line); background: var(--card); }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--card-2); font-family: 'Kanit', sans-serif; font-weight: 500; color: var(--brand); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .jpt-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); gap: 10px; margin-top: 8px; }
+  .jpt-kpis > div { background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+  .jpt-kpis b { display: block; font-family: 'Kanit', sans-serif; font-size: 1.3rem; font-weight: 600; color: var(--brand); }
+  .jpt-kpis b small { font-size: .85rem; color: var(--muted); }
+  .jpt-kpis span { font-size: .8rem; color: var(--muted); }
+  .jpt-note { margin-top: 10px; font-size: .9rem; background: var(--accent-soft); border-radius: 10px; padding: 8px 12px; }
+  .jpt-table { margin-top: 12px; }
+  .jpt-table table { font-size: .82rem; }
+  .jpt-table tr.bad td { background: rgba(249, 115, 22, .08); }
+  .jpt-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .jpt-tabs button { font-family: 'Kanit', sans-serif; border: 1px solid var(--line); background: var(--card); color: var(--text); border-radius: 999px;
+    min-height: 46px; padding: 6px 16px; cursor: pointer; font-size: .95rem; }
+  .jpt-tabs button.on { background: var(--hk-navy); color: #fff; border-color: transparent; }
+  .jpt-tabs .jpt-tg { font-size: .8rem; color: var(--muted); width: 100%; font-weight: 600; margin-top: 4px; }
+  table.heat td, table.heat th { padding: 6px 7px; font-size: .75rem; white-space: nowrap; }
+
+  /* แถบปุ่มด้านล่าง (ใช้นิ้วโป้งกดได้ทุกวัย) */
+  nav.bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: color-mix(in srgb, var(--card) 94%, transparent); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line); padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); }
+  nav.bar .wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: 640px; }
+  nav.bar button, nav.bar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-height: 62px; border-radius: 14px;
+    border: 0; background: transparent; color: var(--text); font-family: 'Kanit', sans-serif; font-size: .82rem; text-decoration: none; cursor: pointer; }
+  nav.bar .i { font-size: 1.55rem; line-height: 1.2; }
+  nav.bar .on { background: color-mix(in srgb, var(--brand) 14%, transparent); color: var(--brand); }
+  nav.bar .line { color: #06C755; }
+  footer { max-width: 1100px; margin: 0 auto; padding: 4px 16px 20px; color: var(--muted); font-size: .8rem; text-align: center; }
+  @media (min-width: 1024px) { header.hero { padding: 22px 24px 24px; } header.hero h1 { font-size: 1.9rem; } main { padding: 20px 24px 30px; } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="hero-top">
+    <div><h1>🦉 ฮูก Clear</h1><p>สำนักงานพัฒนาชุมชนจังหวัดสงขลา</p></div>
+    <div class="tools">
+      <button type="button" id="fs-down" aria-label="ลดขนาดตัวอักษร" title="ลดขนาดตัวอักษร">ก−</button>
+      <button type="button" id="fs-up" aria-label="เพิ่มขนาดตัวอักษร" title="เพิ่มขนาดตัวอักษร">ก+</button>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="สลับโหมดสว่าง/มืด" title="สลับโหมดสว่าง/มืด">🌙</button>
+    </div>
+  </div>
+  <div class="hero-kpis" id="hero-kpis"></div>
+</div></header>
+<main id="main"></main>
+<footer id="foot"></footer>
+<nav class="bar" aria-label="เมนูหลัก"><div class="wrap" id="bar"></div></nav>
+<script>
+/* แผนที่ 16 อำเภอ จังหวัดสงขลา — สร้างด้วย tools/build-map.js (อย่าแก้ด้วยมือ) */
+var HK_MAP = {"w":360,"h":569,"src":"geoBoundaries (Royal Thai Survey Department, OCHA ROAP) CC BY 3.0 IGO","districts":{"บางกล่ำ":{"d":"M85.1 310.6L88.5 312.2L89.2 311.8L92.9 311.9L94.2 314.5L95.6 314.8L96.6 315.7L99.5 314.3L102.4 315.4L102.1 312.7L102.7 313.7L103.7 313.4L104.4 314.1L106.1 314.1L108.8 315.6L109.2 318.7L110.4 320.0L117.2 321.6L118.8 320.8L116.8 326.7L118.2 326.9L118.7 326.5L118.3 326.2L119.2 326.1L119.3 326.5L120.8 326.9L121.6 325.2L123.0 325.1L122.8 324.6L124.4 323.9L125.6 324.1L127.0 322.5L128.3 322.3L132.5 318.7L133.2 318.7L133.6 319.3L134.9 318.2L135.7 318.4L136.3 317.0L135.6 316.1L136.4 314.6L131.8 312.3L133.6 306.7L130.5 304.4L130.6 303.2L138.1 303.4L138.6 301.6L140.4 300.9L141.4 299.2L142.3 298.8L143.1 299.5L143.6 298.3L145.8 298.3L146.4 297.9L145.6 296.8L144.5 296.6L145.0 295.3L144.0 294.4L144.2 292.7L143.0 292.0L143.3 290.2L142.2 289.4L141.3 286.8L139.6 287.0L138.5 285.9L138.0 281.9L136.8 279.1L136.2 270.0L139.7 259.6L135.9 266.0L134.3 272.8L131.9 273.6L131.1 274.4L130.9 275.4L131.8 275.9L130.6 277.6L131.3 278.4L130.1 278.5L129.9 279.4L129.6 278.5L128.4 277.8L128.6 280.3L126.6 282.2L124.4 283.3L122.3 286.2L122.5 288.6L120.9 290.7L120.7 292.9L120.1 293.6L118.2 294.7L115.0 294.1L112.9 294.5L107.6 297.4L102.0 298.8L100.4 297.6L97.9 297.4L96.7 295.7L95.7 295.3L95.1 293.9L94.3 294.4L94.1 296.0L93.2 295.6L91.2 296.1L91.3 297.4L90.6 297.5L90.8 298.4L89.9 299.0L90.4 303.4L87.1 304.1L86.8 305.4L85.4 306.1L84.9 307.0Z","x":119,"y":302.4},"จะนะ":{"d":"M264.2 340.9L259.6 340.1L253.2 336.8L247.4 332.6L240.8 326.6L230.7 314.7L223.4 304.8L220.3 299.6L217.6 297.4L212.2 289.2L209.4 291.2L208.5 292.8L210.7 298.2L211.5 301.9L211.3 303.1L212.8 305.8L212.2 306.4L207.1 306.1L207.1 307.5L205.9 305.9L204.1 306.1L201.7 307.2L201.5 311.9L199.8 312.8L200.4 315.7L199.2 317.1L197.3 317.8L197.4 318.7L195.9 320.7L196.1 322.7L195.4 323.5L196.8 329.9L195.2 331.8L193.3 332.7L192.6 333.9L190.4 334.9L189.5 337.5L189.9 338.7L189.4 341.2L188.8 342.2L190.3 344.7L190.0 346.4L190.7 348.0L193.8 349.9L192.1 350.9L190.6 350.8L186.9 355.0L185.8 358.3L184.6 359.1L184.6 362.9L184.2 363.2L184.8 363.9L184.7 365.1L183.7 365.6L183.9 366.5L183.2 367.9L183.5 369.0L182.1 370.6L183.1 372.7L182.7 375.0L183.1 376.4L181.8 386.3L184.7 387.8L185.4 389.1L185.2 390.6L186.0 392.9L185.6 395.1L189.9 397.8L191.2 397.4L191.0 396.3L193.3 396.4L195.0 395.2L198.6 395.0L200.7 393.7L205.7 394.3L208.2 395.5L211.7 396.1L215.0 397.7L214.9 400.4L215.5 401.1L216.9 401.3L218.4 403.0L219.3 400.2L220.6 400.4L221.5 399.4L223.1 400.6L224.2 399.3L225.4 399.8L227.0 399.1L227.0 399.9L225.9 400.9L227.1 401.4L227.1 401.9L228.0 401.1L229.5 404.3L232.2 405.1L232.7 404.4L236.2 403.9L236.7 407.7L237.9 409.6L239.4 409.2L243.0 411.4L244.4 411.2L247.7 414.0L248.0 411.9L249.2 412.5L250.6 412.1L251.3 412.8L251.2 414.4L251.9 415.1L252.9 414.9L253.7 412.3L255.0 410.8L253.9 408.9L254.0 407.8L254.8 407.1L254.3 406.1L256.0 405.2L256.1 403.8L259.4 402.6L259.8 401.1L258.5 399.5L259.8 398.8L260.7 397.2L260.0 394.7L260.9 394.2L261.2 392.8L262.4 391.3L262.2 389.6L263.2 389.3L263.4 388.5L261.9 387.5L261.8 386.4L260.8 385.5L261.2 384.3L260.6 382.0L255.8 380.5L253.6 377.4L253.5 371.6L254.4 368.9L253.2 363.0L255.0 360.1L256.7 360.7L258.4 358.2L258.9 358.7L258.6 357.7L259.3 356.3L258.7 355.4L260.5 353.5L260.1 352.4L261.0 349.3L259.5 347.2L258.4 347.2L258.2 344.5L256.4 342.1L257.8 341.1L259.3 342.2L261.2 342.3L261.5 342.8L260.9 344.0L262.1 344.7L264.4 342.4L264.7 341.5Z","x":222.4,"y":359.5},"หาดใหญ่":{"d":"M85.1 310.6L84.2 313.1L81.5 313.3L79.3 316.0L76.3 316.5L74.9 318.7L72.4 318.8L71.5 317.8L70.6 318.1L69.9 319.5L68.5 320.1L67.9 319.0L66.4 320.6L64.9 321.1L64.0 322.5L63.9 322.0L63.5 322.6L62.3 322.4L62.4 324.2L61.7 324.2L60.4 325.7L54.7 327.3L51.6 329.6L50.1 329.9L49.6 331.3L48.7 331.4L48.0 332.4L47.1 335.4L48.0 336.5L46.7 342.4L50.6 350.5L53.0 352.1L54.8 352.5L54.6 353.5L53.5 354.0L52.5 355.9L52.3 360.2L52.9 362.8L53.8 363.0L54.3 364.5L56.2 365.8L56.2 368.5L56.9 368.9L55.9 369.6L54.9 372.0L53.6 373.5L53.5 377.4L60.6 375.7L62.9 373.7L64.7 374.4L66.4 376.5L67.1 375.3L67.4 372.7L69.3 372.5L69.8 371.9L70.1 372.4L70.1 371.4L71.5 371.3L70.9 370.0L75.0 363.6L76.9 363.6L78.7 361.2L80.1 362.2L81.1 362.0L81.5 361.1L84.1 359.8L84.9 358.9L85.8 359.6L89.6 359.9L90.7 358.7L92.8 354.2L94.9 353.9L95.6 353.0L95.6 351.6L98.2 350.5L98.7 349.3L105.1 348.6L106.5 347.9L109.2 348.2L109.1 347.1L115.8 346.2L115.8 345.7L117.5 345.7L119.1 344.8L119.7 345.7L123.5 345.2L123.7 347.0L125.7 347.6L128.2 346.0L129.7 346.1L132.0 345.0L132.5 346.0L132.0 346.5L132.1 348.4L132.8 348.8L134.3 348.0L135.0 354.0L137.3 356.2L137.3 357.2L137.7 356.9L138.0 357.3L137.0 358.6L137.9 358.6L138.7 361.3L137.7 362.2L138.2 362.5L137.5 362.7L137.4 363.6L138.6 364.9L138.2 365.7L139.1 365.9L137.7 367.9L138.1 371.9L138.9 372.6L139.5 371.8L140.2 372.7L141.8 372.7L141.6 373.3L141.2 373.1L140.1 374.2L140.9 375.6L140.3 375.9L140.7 376.1L140.3 376.2L140.6 376.7L140.3 378.2L138.3 378.4L138.2 380.0L135.2 380.6L138.8 381.4L139.7 382.8L138.7 383.7L138.7 384.4L140.4 386.1L141.2 386.3L140.7 386.7L141.0 387.6L142.1 387.9L143.0 389.6L143.0 388.5L146.8 388.7L147.0 389.5L159.5 389.6L165.2 392.1L167.5 395.0L168.5 395.2L170.0 394.1L172.3 394.7L175.6 397.5L180.7 397.6L182.1 395.5L182.0 394.3L185.6 394.2L186.0 392.9L185.2 390.6L185.4 389.1L184.7 387.8L181.8 386.3L183.1 376.4L182.7 375.0L183.1 372.7L182.1 370.6L183.5 369.0L183.2 367.9L183.9 366.5L183.7 365.6L184.7 365.1L184.8 363.9L184.2 363.2L181.7 363.7L180.6 366.4L178.1 364.2L177.4 364.8L177.4 365.9L176.0 366.9L169.9 366.7L169.4 367.2L164.7 367.7L165.1 365.7L166.7 364.4L166.5 362.8L162.8 361.1L163.0 360.2L160.2 356.0L159.6 353.6L160.2 352.1L160.4 349.1L159.7 348.0L159.3 343.2L156.8 343.2L154.8 342.3L154.8 340.7L156.3 339.0L156.0 338.0L153.9 337.3L153.7 335.5L155.0 332.7L156.5 331.6L156.9 330.4L159.3 328.2L160.0 326.7L160.7 329.3L162.4 331.3L163.7 330.9L164.6 332.8L165.7 332.8L166.4 333.6L166.8 332.6L166.3 331.8L165.8 328.3L166.5 327.3L168.7 326.0L168.9 323.8L171.0 324.1L173.0 323.1L172.5 322.2L172.5 320.9L174.3 319.7L176.2 320.2L178.5 319.7L180.3 320.6L180.7 319.4L183.0 318.6L187.1 315.6L187.7 312.8L189.3 311.2L189.7 310.0L188.9 307.7L185.5 308.6L185.4 307.2L184.3 307.2L182.8 306.1L182.7 304.6L180.1 304.8L179.4 303.1L178.6 303.2L178.4 301.2L176.7 301.2L175.5 300.3L174.1 286.9L172.6 286.1L172.0 284.1L172.2 281.7L171.2 280.7L172.5 279.7L172.2 277.3L174.0 276.1L173.9 275.4L172.3 275.0L173.2 273.1L171.5 272.1L165.5 274.6L163.2 274.7L161.0 274.1L139.7 259.6L136.2 270.0L136.8 279.1L138.0 281.9L138.5 285.9L139.6 287.0L141.3 286.8L142.2 289.4L143.3 290.2L143.0 292.0L144.2 292.7L144.0 294.4L145.0 295.3L144.5 296.6L145.6 296.8L146.4 297.9L143.6 298.3L143.1 299.5L142.3 298.8L141.4 299.2L140.4 300.9L138.6 301.6L138.1 303.4L130.6 303.2L130.5 304.4L133.6 306.7L131.8 312.3L136.4 314.6L135.6 316.1L136.3 317.0L135.7 318.4L134.9 318.2L133.6 319.3L133.2 318.7L132.5 318.7L128.3 322.3L127.0 322.5L125.6 324.1L124.4 323.9L122.8 324.6L123.0 325.1L121.6 325.2L120.8 326.9L119.3 326.5L119.2 326.1L118.3 326.2L118.7 326.5L118.2 326.9L116.8 326.7L118.8 320.8L117.2 321.6L110.4 320.0L109.2 318.7L108.8 315.6L106.1 314.1L104.4 314.1L103.7 313.4L102.7 313.7L102.1 312.7L102.4 315.4L99.5 314.3L96.6 315.7L95.6 314.8L94.2 314.5L92.9 311.9L89.2 311.8L88.5 312.2Z","x":126.8,"y":334.3},"คลองหอยโข่ง":{"d":"M53.5 377.4L53.4 378.3L51.9 378.9L53.3 381.9L54.2 382.3L56.0 385.0L59.1 387.3L59.7 389.3L59.6 392.1L60.3 393.2L62.0 393.5L61.4 394.0L62.4 394.4L62.1 395.2L62.7 395.6L62.1 396.4L62.5 397.8L63.6 397.8L65.1 398.7L65.3 398.1L66.8 398.6L70.5 401.1L70.5 400.2L71.4 400.1L72.4 398.6L73.6 399.9L76.0 399.1L75.9 398.3L76.7 397.8L81.4 398.3L82.8 396.8L85.4 397.9L86.8 397.3L86.4 396.8L87.1 395.9L88.8 396.4L89.7 397.5L91.0 397.3L91.6 396.8L91.3 396.3L94.4 397.6L95.8 396.7L96.0 397.5L96.7 397.5L96.5 398.2L97.2 399.1L98.7 399.4L98.2 399.7L98.6 400.1L99.6 399.8L100.2 400.5L102.3 400.0L103.0 399.1L102.9 396.0L103.8 394.4L103.8 393.1L103.0 392.6L103.8 390.1L107.3 390.0L108.1 388.8L108.2 387.4L111.6 387.2L112.2 385.2L113.2 384.8L113.5 383.5L115.9 384.4L116.8 386.2L117.5 386.1L118.9 384.6L119.1 381.4L120.2 380.2L120.5 378.2L121.2 377.6L123.2 377.3L127.4 380.6L132.0 378.8L134.5 381.0L135.6 381.0L135.2 380.6L135.5 380.3L138.2 380.0L138.3 378.4L140.3 378.2L140.6 376.7L140.3 376.2L140.7 376.1L140.3 375.9L140.9 375.6L140.7 375.0L140.2 375.0L140.5 374.3L140.1 374.2L141.2 373.1L141.6 373.3L141.8 372.7L140.2 372.7L139.5 371.8L138.9 372.6L138.1 371.9L137.7 367.9L139.1 365.9L138.2 365.7L138.6 364.9L137.4 363.6L137.5 362.7L138.2 362.5L137.7 362.2L138.7 361.3L137.9 358.6L137.0 358.6L138.0 357.3L137.7 356.9L137.3 357.2L137.3 356.2L135.0 354.0L134.3 348.0L132.8 348.8L132.1 348.4L132.0 346.5L132.5 346.0L132.0 345.0L129.7 346.1L128.2 346.0L125.7 347.6L123.7 347.0L123.5 345.2L119.7 345.7L119.1 344.8L117.5 345.7L115.8 345.7L115.8 346.2L109.1 347.1L109.2 348.2L106.5 347.9L105.1 348.6L98.7 349.3L98.2 350.5L95.6 351.6L95.6 353.0L94.9 353.9L92.8 354.2L90.7 358.7L89.6 359.9L85.8 359.6L84.9 358.9L84.1 359.8L81.5 361.1L81.1 362.0L80.1 362.2L78.7 361.2L76.9 363.6L75.0 363.6L70.9 370.0L71.5 371.3L70.1 371.4L70.1 372.4L69.8 371.9L69.3 372.5L67.4 372.7L67.1 375.3L66.4 376.5L64.7 374.4L62.9 373.7L60.6 375.7Z","x":99.3,"y":373.2},"ควนเนียง":{"d":"M139.7 259.6L131.9 237.8L129.6 236.9L126.6 234.0L121.3 232.6L118.6 233.5L116.7 231.3L114.3 229.9L112.9 228.4L112.6 227.0L113.2 224.3L111.3 221.0L111.4 217.5L111.0 216.1L110.4 216.2L109.7 217.1L109.4 219.1L105.5 219.7L103.8 221.2L103.7 223.6L105.2 227.3L104.6 228.2L100.7 228.4L99.6 229.7L98.4 229.2L97.6 234.3L98.3 237.6L98.1 238.5L95.5 240.2L96.0 241.5L89.8 244.3L97.9 252.4L96.5 256.1L97.6 257.5L97.4 258.6L96.9 259.4L94.9 260.2L94.6 263.1L93.9 263.8L94.3 265.7L93.4 267.9L94.0 272.9L92.6 275.6L93.6 274.7L94.1 276.3L95.1 276.2L95.7 277.0L97.2 276.9L97.6 277.5L96.7 278.8L97.1 279.6L98.5 279.4L98.3 280.0L99.6 280.8L100.9 279.8L101.3 281.4L100.1 283.9L97.6 284.8L97.2 288.0L95.7 288.7L96.1 292.2L95.1 293.9L95.7 295.3L96.7 295.7L97.9 297.4L100.4 297.6L102.0 298.8L107.6 297.4L112.9 294.5L115.0 294.1L118.2 294.7L120.7 292.9L120.9 290.7L122.5 288.6L122.3 286.2L124.4 283.3L126.6 282.2L128.6 280.3L128.4 277.8L129.6 278.5L129.9 279.4L130.1 278.5L131.3 278.4L130.6 277.6L131.8 275.9L130.9 275.4L131.1 274.4L131.9 273.6L134.3 272.8L135.9 266.0Z","x":113.5,"y":260.3},"กระแสสินธุ์":{"d":"M74.9 152.8L82.7 153.2L87.2 149.9L103.2 142.0L105.1 126.7L104.1 120.8L105.3 120.2L105.6 118.7L105.2 113.7L107.6 113.5L107.6 110.8L106.3 106.5L105.2 106.5L104.6 102.9L105.2 102.5L104.2 98.2L103.0 98.3L101.2 94.2L102.8 93.8L102.1 91.6L103.6 91.3L103.3 90.1L104.8 89.7L101.2 85.4L100.9 81.3L98.9 76.4L56.7 84.1L62.6 138.2L70.6 152.7Z","x":82.2,"y":113.8},"เมืองสงขลา":{"d":"M212.2 289.2L194.7 261.3L193.3 261.5L191.9 260.1L185.8 249.8L183.7 250.2L182.8 249.7L181.4 247.3L180.5 244.2L179.0 245.8L179.1 246.7L178.5 247.2L181.8 257.1L180.6 261.3L177.5 265.9L168.8 259.0L139.7 259.6L161.0 274.1L163.2 274.7L165.5 274.6L171.5 272.1L173.2 273.1L172.3 275.0L173.9 275.4L174.0 276.1L172.2 277.3L172.5 279.7L171.2 280.7L172.2 281.7L172.0 284.1L172.6 286.1L174.1 286.9L175.5 300.3L176.7 301.2L178.4 301.2L178.6 303.2L179.4 303.1L180.1 304.8L182.7 304.6L182.8 306.1L184.3 307.2L185.4 307.2L185.5 308.6L188.9 307.7L189.7 310.0L189.3 311.2L187.7 312.8L187.1 315.6L188.3 316.7L190.4 317.2L190.4 318.9L193.2 319.0L194.9 317.8L199.2 317.1L200.4 315.7L199.8 312.8L201.5 311.9L201.7 307.2L204.1 306.1L205.9 305.9L207.1 307.5L207.1 306.1L212.2 306.4L212.8 305.8L211.3 303.1L211.5 301.9L210.7 298.2L208.5 292.8L209.4 291.2Z","x":185.7,"y":282.5},"นาหม่อม":{"d":"M197.3 317.8L194.9 317.8L193.2 319.0L190.4 318.9L190.4 317.2L188.3 316.7L187.1 315.6L183.0 318.6L180.7 319.4L180.3 320.6L178.5 319.7L176.2 320.2L174.3 319.7L172.5 320.9L172.5 322.2L173.0 323.1L171.0 324.1L168.9 323.8L168.7 326.0L166.5 327.3L165.8 328.3L166.3 331.8L166.8 332.6L166.4 333.6L165.7 332.8L164.6 332.8L163.7 330.9L162.4 331.3L160.7 329.3L160.0 326.7L159.3 328.2L156.9 330.4L156.5 331.6L155.0 332.7L153.7 335.5L153.9 337.3L156.0 338.0L156.3 339.0L154.8 340.7L154.8 342.3L156.8 343.2L159.3 343.2L159.7 348.0L160.4 349.1L160.2 352.1L159.6 353.6L160.2 356.0L163.0 360.2L162.8 361.1L166.5 362.8L166.7 364.4L165.1 365.7L164.7 367.7L169.4 367.2L169.9 366.7L176.0 366.9L177.4 365.9L177.4 364.8L178.1 364.2L180.6 366.4L181.7 363.7L184.6 362.9L184.6 359.1L185.8 358.3L186.9 355.0L190.6 350.8L192.1 350.9L193.8 349.9L190.7 348.0L190.0 346.4L190.3 344.7L188.8 342.2L189.4 341.2L189.9 338.7L189.5 337.5L190.4 334.9L192.6 333.9L193.3 332.7L195.2 331.8L196.8 329.9L195.4 323.5L196.1 322.7L195.9 320.7L197.4 318.7Z","x":176,"y":341.2},"นาทวี":{"d":"M185.6 394.2L182.0 394.3L182.1 395.5L180.7 397.6L180.7 399.0L179.8 400.1L179.5 401.5L176.7 402.6L175.2 406.7L173.4 407.2L173.3 407.7L171.4 407.8L171.4 409.9L170.6 410.4L170.2 413.1L171.0 413.8L171.2 415.4L168.1 419.3L169.4 419.8L170.9 421.6L173.5 422.3L173.3 423.8L171.0 427.2L171.0 428.6L174.1 431.3L173.7 433.1L174.3 435.0L174.9 436.3L176.3 437.1L177.0 439.8L175.6 442.1L175.3 444.7L176.7 450.9L177.4 451.9L177.4 453.2L176.3 455.4L177.2 458.0L175.0 461.5L176.3 463.6L174.9 464.1L174.6 466.4L176.1 468.7L177.0 472.6L179.1 473.8L179.9 475.4L182.4 475.8L184.6 474.7L184.8 480.0L186.7 482.0L186.3 484.2L188.1 485.2L187.8 487.2L189.7 488.8L189.9 490.6L191.1 491.6L189.5 493.8L190.7 495.0L190.3 496.7L190.8 497.3L189.5 499.0L190.4 502.8L190.0 507.2L191.6 508.5L191.9 510.0L193.1 510.8L195.8 511.4L202.7 511.2L202.6 512.9L201.5 514.3L202.6 514.6L202.7 515.2L204.0 515.3L204.6 516.5L205.1 516.5L208.2 513.8L215.8 512.8L216.0 510.7L216.6 509.9L216.2 509.3L216.7 508.7L220.2 508.5L220.5 506.9L224.4 507.0L225.4 503.1L227.9 501.4L228.1 500.1L229.1 498.5L231.2 498.4L231.7 497.4L231.4 496.6L231.9 496.1L231.6 495.1L232.5 495.0L232.9 493.5L234.3 493.3L235.0 494.4L238.0 492.0L237.8 486.3L238.5 485.0L238.4 483.9L241.8 482.5L240.8 481.9L240.6 481.0L238.4 480.4L241.3 478.0L242.3 477.8L243.9 476.1L245.7 476.2L246.5 476.8L247.7 476.2L248.8 475.0L248.7 472.8L249.6 471.1L249.3 470.3L250.7 470.0L252.0 470.9L252.6 469.6L251.5 465.0L247.1 463.6L247.2 461.1L243.9 457.2L245.0 454.0L244.7 451.8L248.1 449.3L251.3 451.3L252.2 452.7L254.1 452.6L254.6 452.1L253.8 450.9L254.2 449.8L255.0 449.2L258.1 448.7L259.2 446.1L258.9 445.0L257.3 443.5L257.3 442.2L260.9 440.6L261.6 438.5L261.3 437.1L259.9 435.2L264.0 430.3L262.0 427.1L266.2 422.4L265.2 421.5L263.6 421.5L260.6 418.8L259.1 418.4L257.7 415.2L255.4 413.0L255.0 410.8L253.7 412.3L252.9 414.9L251.9 415.1L251.2 414.4L251.3 412.8L250.6 412.1L249.2 412.5L248.0 411.9L247.7 414.0L244.4 411.2L243.0 411.4L239.4 409.2L237.9 409.6L236.7 407.7L236.2 403.9L232.7 404.4L232.2 405.1L229.5 404.3L228.0 401.1L227.1 401.9L227.1 401.4L225.9 400.9L227.0 399.9L227.0 399.1L225.4 399.8L224.2 399.3L223.1 400.6L221.5 399.4L220.6 400.4L219.3 400.2L218.4 403.0L216.9 401.3L215.5 401.1L214.9 400.4L215.0 397.7L211.7 396.1L208.2 395.5L205.7 394.3L200.7 393.7L198.6 395.0L195.0 395.2L193.3 396.4L191.0 396.3L191.2 397.4L189.9 397.8L185.6 395.1Z","x":213.1,"y":448.3},"ระโนด":{"d":"M42.1 21.6L50.1 55.7L51.1 56.6L50.7 56.9L52.7 64.6L55.6 72.7L56.7 84.1L98.9 76.4L100.9 81.3L101.2 85.4L104.8 89.7L103.3 90.1L103.6 91.3L102.1 91.6L102.8 93.8L101.2 94.2L103.0 98.3L104.2 98.2L105.2 102.5L104.6 102.9L105.2 106.5L106.3 106.5L107.6 110.8L107.4 112.2L117.9 109.3L118.1 110.1L121.1 109.4L105.3 44.4L96.6 2.5L96.1 2.7L95.9 1.1L93.2 0.0L91.5 0.8L88.2 0.9L86.5 5.5L86.9 8.7L82.2 7.9L77.2 8.8L72.4 8.4L72.6 11.8L69.0 12.7L69.2 14.0L67.1 14.7L67.2 15.4L64.7 15.7L63.9 16.9L64.2 18.1L61.9 18.7L62.0 19.3Z","x":81.6,"y":50.8},"รัตภูมิ":{"d":"M95.1 293.9L96.1 292.2L95.7 288.7L97.2 288.0L97.6 284.8L100.1 283.9L101.3 281.4L100.9 279.8L99.6 280.8L98.3 280.0L98.5 279.4L97.1 279.6L96.7 278.8L97.6 277.5L97.2 276.9L95.7 277.0L95.1 276.2L94.1 276.3L93.6 274.7L92.6 275.6L94.0 272.9L93.4 267.9L94.3 265.7L93.9 263.8L94.6 263.1L94.9 260.2L96.9 259.4L97.4 258.6L97.6 257.5L96.5 256.1L97.9 252.4L89.8 244.3L89.0 245.0L88.2 248.1L85.7 252.2L81.7 251.2L77.2 251.4L75.1 252.5L74.3 252.4L73.6 253.8L70.9 254.7L69.6 256.2L67.0 255.4L64.0 257.8L62.2 257.9L61.0 257.2L58.6 257.8L58.0 257.3L55.2 258.7L54.2 260.0L52.8 259.7L52.0 260.8L50.3 260.5L49.1 261.7L48.2 261.2L46.5 261.9L45.5 263.2L44.7 262.8L44.3 263.5L44.1 263.1L42.9 263.4L42.2 264.1L41.3 263.7L41.1 264.5L40.4 264.7L39.6 267.4L38.9 267.2L38.9 268.0L38.2 268.0L38.9 268.9L37.8 269.4L38.1 270.4L36.8 270.6L36.1 271.9L35.4 271.9L34.8 272.9L33.5 271.4L31.9 272.8L31.1 272.3L30.6 272.6L29.8 271.7L28.0 271.6L27.3 270.7L27.2 269.4L25.5 269.3L23.7 267.8L24.1 267.4L23.0 267.3L22.7 266.7L22.3 267.4L20.8 266.6L17.5 267.9L17.3 268.7L15.6 270.5L15.0 270.4L14.3 271.9L10.0 273.7L7.0 273.4L4.8 276.4L2.7 276.8L3.1 277.6L1.9 280.6L2.2 281.5L4.5 283.2L4.5 285.6L0.9 287.1L0.0 291.4L1.0 293.0L1.9 293.5L1.7 294.6L2.9 297.9L2.3 298.1L2.0 299.6L3.1 300.8L3.1 304.5L6.6 307.0L6.5 307.9L5.6 308.4L5.7 309.1L7.9 309.0L8.4 309.9L7.0 312.7L5.5 313.3L4.5 312.7L3.8 313.4L4.2 315.5L3.0 317.9L4.0 319.8L8.0 322.4L9.8 324.9L9.8 326.0L8.6 328.2L9.1 331.1L8.4 336.9L13.8 336.3L15.4 339.1L16.2 341.9L17.6 341.9L18.3 343.1L19.8 343.9L22.4 346.3L23.0 350.5L28.5 351.1L29.8 350.1L31.4 350.1L35.2 352.1L37.3 354.0L38.2 353.8L38.8 354.7L40.8 354.1L42.1 354.7L42.9 354.2L45.0 354.5L49.4 356.2L50.1 359.0L52.3 360.2L52.5 355.9L53.5 354.0L54.6 353.5L54.8 352.5L53.0 352.1L50.6 350.5L46.7 342.4L48.0 336.5L47.1 335.4L48.0 332.4L48.7 331.4L49.6 331.3L50.1 329.9L51.6 329.6L54.7 327.3L60.4 325.7L61.7 324.2L62.4 324.2L62.3 322.4L63.5 322.6L63.9 322.0L64.0 322.5L64.9 321.1L66.4 320.6L67.9 319.0L68.5 320.1L69.9 319.5L70.6 318.1L71.5 317.8L72.4 318.8L74.9 318.7L76.3 316.5L79.3 316.0L81.5 313.3L84.2 313.1L85.1 310.6L84.9 307.0L85.4 306.1L86.8 305.4L87.1 304.1L90.4 303.4L89.9 299.0L90.8 298.4L90.6 297.5L91.3 297.4L91.2 296.1L93.2 295.6L94.1 296.0L94.3 294.4Z","x":48.1,"y":297.9},"สะบ้าย้อย":{"d":"M335.8 501.8L338.7 501.8L339.3 501.3L339.4 500.0L338.3 499.3L338.6 495.5L338.1 493.7L336.8 491.8L336.0 491.6L337.2 489.3L339.2 488.2L338.8 482.5L344.7 482.4L347.7 481.7L349.0 479.0L351.6 478.0L352.7 472.5L353.8 471.5L353.1 464.3L353.8 462.0L355.4 460.9L354.9 459.5L355.2 457.1L357.3 455.5L360.0 452.2L358.6 449.4L354.8 447.8L352.0 447.4L349.4 447.9L348.4 447.0L347.6 447.1L345.2 443.1L340.7 440.5L342.8 437.6L343.5 435.6L340.8 434.5L335.6 430.3L329.8 429.6L326.6 430.4L322.8 429.6L322.0 429.1L322.4 428.2L321.7 427.9L315.8 428.4L314.3 427.6L314.6 427.2L314.2 426.6L313.7 426.5L313.6 427.1L313.4 426.5L314.2 425.8L313.5 424.5L312.2 424.8L312.2 423.9L311.7 425.3L311.1 424.2L310.5 425.1L309.7 424.8L308.9 425.1L309.1 425.8L308.5 425.6L308.4 426.7L309.0 427.0L308.3 427.3L309.0 427.4L309.1 428.4L309.7 428.8L309.0 430.1L307.7 430.6L308.2 431.2L307.6 434.3L308.6 436.8L306.9 437.7L306.6 438.7L305.6 439.0L302.0 442.5L300.2 442.7L299.0 441.5L296.8 441.6L295.7 443.7L297.1 447.1L295.7 447.5L294.6 450.1L292.1 449.3L291.1 449.5L290.2 450.4L289.1 449.9L287.9 450.2L285.0 447.5L282.8 446.6L281.9 447.8L281.2 451.0L280.1 451.2L279.3 450.3L279.4 449.6L278.5 449.1L279.6 447.7L277.9 446.2L278.8 444.9L278.2 441.7L276.9 440.4L275.7 440.0L274.3 440.1L273.7 440.8L271.8 441.4L269.6 441.1L267.2 442.4L266.3 441.5L265.3 441.6L265.0 440.9L261.9 442.3L261.8 443.1L259.7 446.1L259.2 446.1L258.1 448.7L255.0 449.2L254.2 449.8L253.8 450.9L254.6 452.1L254.1 452.6L252.2 452.7L251.3 451.3L248.1 449.3L244.7 451.8L245.0 454.0L243.9 457.2L247.2 461.1L247.1 463.6L251.5 465.0L252.6 469.6L252.0 470.9L250.7 470.0L249.3 470.3L249.6 471.1L248.7 472.8L248.8 475.0L246.5 476.8L245.7 476.2L243.9 476.1L242.3 477.8L241.3 478.0L238.4 480.4L240.6 481.0L240.8 481.9L241.8 482.5L238.4 483.9L238.5 485.0L237.8 486.3L238.0 492.0L235.0 494.4L236.0 497.1L234.5 500.4L235.7 502.4L236.0 507.0L239.1 511.2L240.8 511.9L241.3 511.5L244.3 512.2L245.6 511.6L247.3 509.5L249.1 511.6L249.1 512.4L250.8 512.5L252.4 514.6L257.6 516.1L258.9 516.0L259.5 516.7L259.8 518.9L260.5 519.7L260.4 521.5L261.1 522.1L260.9 523.3L262.6 525.6L263.7 529.6L262.7 531.1L263.6 537.9L262.5 540.4L262.8 541.3L262.4 542.3L263.0 543.4L262.7 546.2L264.9 548.0L265.2 549.4L267.3 552.0L269.2 556.4L269.1 558.1L272.2 560.9L272.1 562.5L270.7 562.8L269.6 563.7L269.5 565.8L272.5 569.4L275.0 568.2L276.7 568.2L277.7 566.8L278.2 567.7L279.6 568.1L282.2 567.2L282.7 567.8L284.2 567.2L285.7 567.5L286.5 566.2L288.9 564.7L293.9 564.7L293.4 564.0L294.5 563.7L294.0 562.1L294.9 562.1L295.6 559.7L297.7 558.8L297.9 559.5L298.9 559.5L300.0 558.6L299.8 558.2L298.7 558.3L298.1 557.3L298.2 556.7L299.7 557.1L299.7 556.2L298.4 556.0L299.7 555.1L298.3 553.3L298.8 552.1L297.4 552.1L296.6 550.5L296.7 549.2L297.5 548.9L296.7 548.2L296.6 547.1L298.7 547.2L298.4 545.3L299.1 542.8L298.3 541.6L298.9 541.5L298.8 541.1L297.3 540.0L297.0 538.8L297.5 537.5L296.4 537.2L296.6 535.3L297.4 534.6L296.1 533.8L295.6 531.8L296.0 531.1L296.6 531.2L295.9 528.5L296.5 528.0L296.5 525.1L297.3 523.6L297.3 522.3L300.1 519.0L301.0 516.1L302.0 515.5L302.8 516.6L304.2 516.1L306.5 516.8L307.9 515.8L307.7 513.7L308.1 514.1L308.8 513.7L310.4 513.9L310.7 510.4L311.6 507.9L312.1 507.6L313.3 508.5L314.7 508.0L314.4 505.1L315.6 504.0L315.8 503.1L315.3 502.5L316.1 501.6L318.9 502.3L320.8 502.0L323.6 504.1L331.1 501.1L331.5 501.5L331.4 502.9L332.0 503.1Z","x":293.1,"y":486.8},"สะเดา":{"d":"M135.6 381.0L134.5 381.0L132.0 378.8L127.4 380.6L123.2 377.3L121.2 377.6L120.5 378.2L120.2 380.2L119.1 381.4L118.9 384.6L117.5 386.1L116.8 386.2L115.9 384.4L113.5 383.5L113.2 384.8L112.2 385.2L111.6 387.2L108.2 387.4L108.1 388.8L107.3 390.0L103.8 390.1L103.0 392.6L103.8 393.1L103.8 394.4L102.9 396.0L103.0 399.1L102.3 400.0L100.2 400.5L99.6 399.8L98.6 400.1L98.2 399.7L98.7 399.4L97.2 399.1L96.5 398.2L96.7 397.5L96.0 397.5L95.8 396.7L94.4 397.6L91.3 396.3L91.6 396.8L91.0 397.3L89.7 397.5L88.8 396.4L87.1 395.9L86.4 396.8L86.8 397.3L85.4 397.9L82.8 396.8L81.4 398.3L76.7 397.8L75.9 398.3L76.0 399.1L73.6 399.9L72.4 398.6L71.4 400.1L70.5 400.2L70.5 401.1L66.8 398.6L65.3 398.1L65.1 398.7L63.6 397.8L62.5 397.8L62.1 396.4L62.7 395.6L62.1 395.2L62.4 394.4L61.4 394.0L62.0 393.5L60.3 393.2L59.6 392.1L59.7 389.3L59.1 387.3L56.0 385.0L54.2 382.3L53.3 381.9L51.9 378.9L50.5 379.5L49.4 381.0L48.2 383.9L48.6 388.2L46.9 389.8L46.9 393.4L48.3 394.8L47.4 396.4L47.5 397.5L49.5 399.0L49.7 401.5L54.2 404.1L55.3 407.7L54.5 409.5L52.4 411.0L51.9 414.7L52.2 417.4L51.4 418.6L51.8 420.5L54.7 421.0L55.0 423.3L56.1 424.5L56.1 426.6L58.9 429.0L59.5 430.2L60.6 429.6L62.7 430.5L64.7 430.1L64.8 429.2L65.8 429.3L66.8 428.5L67.2 427.0L68.0 426.5L67.7 425.0L68.5 424.6L69.1 425.0L69.4 423.9L70.9 425.3L71.7 428.1L72.2 428.2L73.7 426.7L75.3 426.2L75.7 425.5L78.7 424.7L79.3 425.1L80.5 424.2L81.8 425.2L82.3 426.2L81.0 428.1L80.8 431.0L82.3 434.8L83.4 435.5L84.5 434.6L85.1 435.0L86.1 438.6L87.1 439.3L88.4 439.4L89.5 438.9L90.6 440.1L92.7 439.7L93.5 440.3L92.3 442.7L90.8 443.7L91.7 445.3L91.5 447.8L90.0 448.5L89.6 449.7L89.8 450.3L91.3 450.0L92.3 452.8L92.0 453.4L93.0 455.0L89.8 457.7L88.0 457.9L87.5 458.6L86.1 458.5L85.9 460.5L86.5 460.3L88.3 461.2L89.5 460.9L91.1 465.2L92.7 466.2L92.8 467.3L93.9 467.8L95.9 467.5L96.6 468.1L96.4 468.5L98.3 469.1L98.2 470.6L99.6 472.3L100.6 471.7L101.8 471.7L102.6 473.5L102.4 475.6L103.1 475.7L103.5 476.6L104.7 477.2L104.1 478.2L104.6 480.2L106.2 481.6L106.9 483.2L107.7 483.4L109.2 481.3L112.2 482.5L113.0 483.7L113.8 483.5L114.4 484.8L117.5 485.2L119.1 484.3L119.4 486.6L121.2 486.9L122.2 489.0L123.9 488.8L124.4 490.3L126.3 490.8L128.1 489.0L128.9 488.7L129.6 489.1L131.9 487.5L136.8 487.6L137.8 485.9L138.9 486.1L139.8 488.2L141.4 488.3L141.5 489.4L142.5 489.8L144.8 488.6L148.1 488.8L148.8 487.8L151.0 489.0L151.2 490.2L150.0 491.2L150.5 493.8L152.5 495.5L153.2 496.9L154.3 497.2L155.4 496.6L156.1 498.3L157.9 499.0L159.1 500.6L160.8 500.0L161.3 500.9L163.6 500.2L165.3 501.2L167.2 499.8L169.2 502.0L170.7 499.7L174.0 498.1L175.1 500.0L176.9 501.1L177.7 502.8L181.7 504.4L183.3 503.9L184.8 504.4L186.6 505.5L187.9 507.6L188.6 506.4L189.7 506.4L190.4 502.8L189.5 499.0L190.8 497.3L190.3 496.7L190.7 495.0L189.5 493.8L191.1 491.6L189.9 490.6L189.7 488.8L187.8 487.2L188.1 485.2L186.3 484.2L186.7 482.0L184.8 480.0L184.6 474.7L182.4 475.8L179.9 475.4L179.1 473.8L177.0 472.6L176.1 468.7L174.6 466.4L174.9 464.1L176.3 463.6L175.0 461.5L177.2 458.0L176.3 455.4L177.4 453.2L177.4 451.9L176.7 450.9L175.3 444.7L175.6 442.1L177.0 439.8L176.3 437.1L174.9 436.3L174.3 435.0L173.7 433.1L174.1 431.3L171.0 428.6L171.0 427.2L173.3 423.8L173.5 422.3L170.9 421.6L169.4 419.8L168.1 419.3L171.2 415.4L171.0 413.8L170.2 413.1L170.6 410.4L171.4 409.9L171.4 407.8L173.3 407.7L173.4 407.2L175.2 406.7L176.7 402.6L179.5 401.5L179.8 400.1L180.7 399.0L180.7 397.6L175.6 397.5L172.3 394.7L170.0 394.1L168.5 395.2L167.5 395.0L165.2 392.1L159.5 389.6L147.0 389.5L146.8 388.7L143.0 388.5L143.0 389.6L142.1 387.9L141.0 387.6L140.7 386.7L141.2 386.3L140.4 386.1L138.7 384.4L138.7 383.7L139.7 382.8L138.8 381.4L137.3 380.8Z","x":128,"y":436.8},"สทิงพระ":{"d":"M103.2 142.0L113.7 147.5L114.2 152.6L112.4 177.5L113.6 180.4L117.1 184.2L118.0 186.0L118.5 192.3L120.4 199.3L127.0 198.3L129.1 196.7L134.0 195.6L134.7 197.7L146.2 194.3L137.7 171.5L132.2 153.7L121.1 109.4L118.1 110.1L117.9 109.3L115.9 109.7L115.7 110.2L107.4 112.2L107.6 113.5L105.2 113.7L105.6 118.7L105.3 120.2L104.1 120.8L105.1 126.7Z","x":122.4,"y":156.8},"สิงหนคร":{"d":"M139.7 259.6L168.8 259.0L177.5 265.9L180.6 261.3L181.8 257.1L178.5 247.2L177.5 247.4L176.3 246.0L178.3 244.8L176.7 244.7L175.7 245.8L174.8 244.9L174.5 243.5L174.1 243.6L174.9 242.7L174.0 243.1L173.6 242.2L176.5 242.1L178.4 243.6L176.6 242.1L175.0 242.1L172.7 238.2L168.3 234.7L164.6 230.1L160.5 223.6L154.6 213.0L146.2 194.3L134.7 197.7L134.0 195.6L129.1 196.7L127.0 198.3L120.4 199.3L121.7 203.1L122.0 206.9L123.4 210.5L128.2 217.5L127.2 223.0L127.7 226.6L126.7 227.8L122.2 229.5L121.3 232.6L126.6 234.0L129.6 236.9L131.9 237.8Z","x":148.4,"y":231.5},"เทพา":{"d":"M255.0 410.8L255.4 413.0L257.7 415.2L259.1 418.4L260.6 418.8L263.6 421.5L265.2 421.5L266.2 422.4L262.0 427.1L264.0 430.3L259.9 435.2L261.3 437.1L261.6 438.5L260.9 440.6L257.3 442.2L257.3 443.5L258.9 445.0L259.2 446.1L259.7 446.1L261.9 442.3L265.0 440.9L265.3 441.6L266.3 441.5L267.2 442.4L269.6 441.1L271.8 441.4L273.7 440.8L274.3 440.1L276.9 440.4L278.2 441.7L278.8 444.9L277.9 446.2L279.6 447.7L278.5 449.1L279.4 449.6L279.3 450.3L280.1 451.2L281.2 451.0L281.9 447.8L282.8 446.6L285.0 447.5L287.9 450.2L289.1 449.9L290.2 450.4L291.1 449.5L292.1 449.3L294.6 450.1L295.7 447.5L297.1 447.1L295.7 443.7L296.8 441.6L299.0 441.5L300.2 442.7L302.0 442.5L305.6 439.0L306.6 438.7L306.9 437.7L308.6 436.8L307.6 434.3L308.2 431.2L307.7 430.6L309.0 430.1L309.7 428.8L309.1 428.4L309.0 427.4L308.3 427.3L309.0 427.0L308.4 426.7L308.5 425.6L309.1 425.8L308.9 425.1L309.7 424.8L310.5 425.1L311.1 424.2L311.7 425.3L312.2 423.9L312.2 424.8L313.5 424.5L314.2 425.8L313.4 426.5L313.6 427.1L313.7 426.5L314.2 426.6L314.6 427.2L314.3 427.6L315.8 428.4L321.7 427.9L322.4 428.2L322.0 429.1L322.8 429.6L326.6 430.4L329.8 429.6L335.6 430.3L340.8 434.5L343.5 435.6L344.6 435.0L345.8 433.1L345.8 432.3L344.4 431.9L345.4 428.4L344.7 425.9L343.8 425.5L343.6 423.5L338.8 424.4L337.4 425.6L337.5 421.2L335.2 421.6L332.5 420.9L330.7 420.0L329.9 418.9L332.0 417.6L331.8 416.5L332.5 415.8L334.3 414.9L334.9 413.2L335.0 412.1L333.9 411.0L333.4 409.1L335.2 407.3L333.3 404.4L334.1 401.8L333.8 400.4L336.0 399.2L335.8 398.6L337.4 397.4L338.3 394.9L342.6 392.8L339.1 390.3L338.6 389.1L338.7 383.5L341.3 380.8L340.2 379.9L339.3 380.5L338.8 380.0L338.7 378.8L339.6 377.9L338.9 376.9L340.5 377.1L343.7 375.5L345.4 375.6L346.6 373.6L338.0 375.0L331.1 375.0L326.4 374.1L320.2 372.1L313.9 368.8L313.6 369.3L311.5 367.6L305.6 364.7L299.4 360.8L290.1 353.6L272.5 337.5L270.9 338.3L268.7 337.9L266.2 340.8L264.2 340.9L264.7 341.5L264.4 342.4L262.1 344.7L260.9 344.0L261.5 342.8L261.2 342.3L259.3 342.2L257.8 341.1L256.4 342.1L258.2 344.5L258.4 347.2L259.5 347.2L261.0 349.3L260.1 352.4L260.5 353.5L258.7 355.4L259.3 356.3L258.6 357.7L258.9 358.7L258.4 358.2L256.7 360.7L255.0 360.1L253.2 363.0L254.4 368.9L253.5 371.6L253.6 377.4L255.8 380.5L260.6 382.0L261.2 384.3L260.8 385.5L261.8 386.4L261.9 387.5L263.4 388.5L263.2 389.3L262.2 389.6L262.4 391.3L261.2 392.8L260.9 394.2L260.0 394.7L260.7 397.2L259.8 398.8L258.5 399.5L259.8 401.1L259.4 402.6L256.1 403.8L256.0 405.2L254.3 406.1L254.8 407.1L254.0 407.8L253.9 408.9Z","x":293,"y":396.9}}};
+</script>
+
+<script>
+/**
+ * HookCharts.html — กราฟและโหมดมืดที่ใช้ร่วมกัน (แดชบอร์ดคลังข้อมูล + หน้าเว็บประชาชน)
+ * ต้องโหลด Chart.js ก่อน · HK.slot() คืน HTML ที่มี canvas แล้ว HK.mount() สร้างกราฟหลังใส่ HTML ลงหน้า
+ */
+var HK = (function () {
+  var pending = {};
+  var live = [];
+  var seq = 0;
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var n0 = function (v) { return Number(v || 0).toLocaleString('th-TH'); };
+  var pct = function (v) { return (Math.abs(v) < 10 ? Number(v).toFixed(2) : Number(v).toFixed(1)) + '%'; };
+  function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function defaults() {
+    if (!window.Chart) return;
+    Chart.defaults.font.family = "'Sarabun', system-ui, sans-serif";
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = cssVar('--muted') || '#64748b';
+    Chart.defaults.borderColor = cssVar('--line') || '#e2e8f0';
+    Chart.defaults.plugins.legend.labels.boxWidth = 12;
+    Chart.defaults.plugins.tooltip.padding = 10;
+    Chart.defaults.maintainAspectRatio = false;
+  }
+
+  /** ช่องกราฟ: cfg = ฟังก์ชันคืน config ของ Chart.js (เรียกตอน mount เพื่อให้ได้สีของธีมปัจจุบัน) */
+  function slot(cfg, height) {
+    var id = 'hkc' + (++seq);
+    pending[id] = cfg;
+    return '<div class="chart-box" style="height:' + (height || 260) + 'px"><canvas id="' + id + '" role="img"></canvas></div>';
+  }
+
+  function mount() {
+    if (!window.Chart) return;
+    defaults();
+    Object.keys(pending).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) live.push(new Chart(el, pending[id]()));
+    });
+    pending = {};
+  }
+
+  function destroyAll() {
+    live.forEach(function (c) { try { c.destroy(); } catch (e) { /* ไม่เป็นไร */ } });
+    live = [];
+  }
+
+  /** ปุ่มสลับโหมด: เก็บค่าในเครื่อง (ถ้าใช้ได้) แล้วเรียก onChange ให้วาดกราฟใหม่ด้วยสีใหม่ */
+  function themeButton(btn, onChange) {
+    if (!btn) return;
+    var paint = function () { btn.textContent = isDark() ? '☀️' : '🌙'; };
+    paint();
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('hk-theme', next); } catch (e) { /* โหมดส่วนตัว */ }
+      paint();
+      if (onChange) onChange();
+    });
+    if (window.matchMedia) {
+      try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { paint(); if (onChange) onChange(); }); } catch (e) { /* เบราว์เซอร์เก่า */ }
+    }
+  }
+
+  var C = function () {
+    return {
+      navy: isDark() ? '#60a5fa' : '#1d4ed8', amber: '#f59e0b', orange: '#f97316', green: '#10b981',
+      male: '#3b82f6', female: '#ec4899', grid: cssVar('--line'), soft: isDark() ? 'rgba(96,165,250,.25)' : 'rgba(29,78,216,.15)',
+    };
+  };
+
+  function kpis(items) {
+    return '<div class="jpt-kpis">' + items.filter(Boolean).map(function (k) { return '<div><b>' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('') + '</div>';
+  }
+
+  /* ---------- สรุปผล จปฐ. 38 ตัวชี้วัด ---------- */
+  function jptSummary(d, opt) {
+    opt = opt || {};
+    var ind = d.indicators || [];
+    var failing = ind.filter(function (x) { return x.fail > 0; }).sort(function (a, b) { return b.failPct - a.failPct; });
+    var allPass = ind.length - failing.length;
+    var unitTxt = function (x) { return /คร/.test(x.unit) ? 'ครัวเรือน' : 'คน'; };
+    var html = kpis([
+      [n0(d.households), 'ครัวเรือนที่สำรวจ'],
+      [allPass + '<small>/' + ind.length + '</small>', 'ตัวชี้วัดผ่านเกณฑ์ทุกราย'],
+      failing.length ? [pct(failing[0].failPct), 'ไม่ผ่านสูงสุด · ข้อ ' + failing[0].no] : null,
+      d.happiness != null ? [esc(d.happiness), 'ระดับความสุข (เต็ม 10)'] : null,
+    ]);
+    var cats = d.cats || [];
+    html += '<div class="jpt-grid">'
+      + '<div class="jpt-panel"><h4>สถานะ 38 ตัวชี้วัด แยก 5 หมวด</h4>'
+      + slot(function () {
+        var c = C();
+        return {
+          type: 'bar',
+          data: {
+            labels: cats.map(function (x) { return x.name.length > 14 ? x.name.slice(0, 14) + '…' : x.name; }),
+            datasets: [
+              { label: 'ผ่านทุกราย', data: cats.map(function (x) { return x.n - x.problems; }), backgroundColor: c.green, borderRadius: 6, stack: 's' },
+              { label: 'ยังมีผู้ไม่ผ่าน', data: cats.map(function (x) { return x.problems; }), backgroundColor: c.orange, borderRadius: 6, stack: 's' },
+            ],
+          },
+          options: {
+            indexAxis: 'y', scales: { x: { stacked: true, ticks: { precision: 0 }, title: { display: true, text: 'จำนวนตัวชี้วัด' } }, y: { stacked: true, grid: { display: false } } },
+            plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { afterBody: function (it) { var k = cats[it[0].dataIndex]; return 'ข้อ ' + k.from + '–' + k.to + ' · ผ่านต่ำสุด ' + (k.minPass == null ? '-' : pct(k.minPass)); } } } },
+          },
+        };
+      }, 230) + '</div>'
+      + '<div class="jpt-panel"><h4>ตัวชี้วัดที่ไม่ผ่านเกณฑ์มากที่สุด (ร้อยละ)</h4>'
+      + (failing.length ? slot(function () {
+        var c = C();
+        var top = failing.slice(0, 10);
+        return {
+          type: 'bar',
+          data: { labels: top.map(function (x) { return 'ข้อ ' + x.no + ' ' + (x.name.length > 26 ? x.name.slice(0, 26) + '…' : x.name); }),
+            datasets: [{ label: 'ร้อยละไม่ผ่าน', data: top.map(function (x) { return x.failPct; }), backgroundColor: top.map(function (x, i) { return i < 3 ? c.orange : c.amber; }), borderRadius: 6 }] },
+          options: {
+            indexAxis: 'y', scales: { x: { ticks: { callback: function (v) { return v + '%'; } } }, y: { grid: { display: false }, ticks: { autoSkip: false } } },
+            plugins: { legend: { display: false }, tooltip: { callbacks: {
+              title: function (it) { var x = top[it[0].dataIndex]; return 'ข้อ ' + x.no + ' ' + x.name; },
+              label: function (it) { var x = top[it.dataIndex]; return 'ไม่ผ่าน ' + pct(x.failPct) + ' (' + n0(x.fail) + ' ' + unitTxt(x) + ')'; },
+            } } },
+          },
+        };
+      }, 320) : '<div class="sub">ผ่านเกณฑ์ทุกตัวชี้วัด 🎉</div>') + '</div></div>';
+    if (opt.table !== false) {
+      html += '<details class="jpt-table"><summary>ดูตาราง 38 ตัวชี้วัด</summary><div class="tablewrap"><table><thead><tr><th>ข้อ</th><th>ตัวชี้วัด</th><th class="n">สำรวจ</th><th class="n">ผ่าน %</th><th class="n">ไม่ผ่าน</th></tr></thead><tbody>'
+        + ind.map(function (x) {
+          return '<tr' + (x.fail > 0 ? ' class="bad"' : '') + '><td>' + x.no + '</td><td>' + esc(x.name) + '</td><td class="n">' + n0(x.surveyed) + ' ' + esc(x.unit)
+            + '</td><td class="n">' + pct(x.passPct) + '</td><td class="n">' + n0(x.fail) + '</td></tr>';
+        }).join('') + '</tbody></table></div></details>';
+    }
+    return html;
+  }
+
+  /* ---------- ประชากรตามช่วงอายุ ---------- */
+  function jptAge(d) {
+    var groups = (d.groups || []).slice().reverse();
+    var p = function (v) { return d.population ? (v / d.population * 100).toFixed(2) + '%' : '-'; };
+    var html = kpis([
+      d.households ? [n0(d.households), 'ครัวเรือน'] : null,
+      [n0(d.population), 'ประชากร (ชาย ' + n0(d.male) + ' · หญิง ' + n0(d.female) + (d.lgbt ? ' · LGBTQI+ ' + n0(d.lgbt) : '') + ')'],
+      [p(d.old), 'ผู้สูงอายุ 60+ (' + n0(d.old) + ' คน)'],
+      [p(d.work), 'วัยแรงงาน 15–59 ปี'],
+    ]);
+    html += '<div class="jpt-note">👵 ' + esc(d.aging) + '</div>';
+    html += '<div class="jpt-grid">'
+      + '<div class="jpt-panel"><h4>โครงสร้างประชากร</h4>' + slot(function () {
+        var c = C();
+        return { type: 'doughnut', data: { labels: ['เด็ก 0–14 ปี', 'วัยแรงงาน 15–59 ปี', 'ผู้สูงอายุ 60+'], datasets: [{ data: [d.kids, d.work, d.old], backgroundColor: [c.green, c.navy, c.amber], borderWidth: 0 }] },
+          options: { cutout: '62%', plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: function (it) { return it.label + ': ' + n0(it.raw) + ' คน (' + p(it.raw) + ')'; } } } } } };
+      }, 250) + '</div>'
+      + '<div class="jpt-panel"><h4>พีระมิดประชากร <small class="sub">(ช่วงอายุกว้างไม่เท่ากันตามรายงาน)</small></h4>' + slot(function () {
+        var c = C();
+        return {
+          type: 'bar',
+          data: { labels: groups.map(function (g) { return g.label.replace(/ปีเต็ม/g, '').replace(/\s+/g, ' ').trim(); }),
+            datasets: [
+              { label: 'ชาย', data: groups.map(function (g) { return -g.male; }), backgroundColor: c.male, borderRadius: 4 },
+              { label: 'หญิง', data: groups.map(function (g) { return g.female; }), backgroundColor: c.female, borderRadius: 4 },
+            ] },
+          options: {
+            indexAxis: 'y', scales: { x: { stacked: true, ticks: { callback: function (v) { return n0(Math.abs(v)); } } }, y: { stacked: true, grid: { display: false } } },
+            plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: function (it) { return it.dataset.label + ': ' + n0(Math.abs(it.raw)) + ' คน'; } } } },
+          },
+        };
+      }, 320) + '</div></div>';
+    return html;
+  }
+
+  /* ---------- ระดับความสุขรายพื้นที่ ---------- */
+  function jptHappy(d) {
+    var list = (d.areas || []).slice().sort(function (a, b) { return b.value - a.value; });
+    var html = kpis([
+      [Number(d.avg).toFixed(2), 'ระดับความสุขเฉลี่ย (เต็ม 10)'],
+      [esc(list[0].area), 'สูงสุด ' + list[0].value.toFixed(2)],
+      [esc(list[list.length - 1].area), 'ต่ำสุด ' + list[list.length - 1].value.toFixed(2)],
+      [list.filter(function (x) { return x.value < d.avg; }).length, 'พื้นที่ต่ำกว่าค่าเฉลี่ย'],
+    ]);
+    var lo = Math.min.apply(null, list.map(function (x) { return x.value; }));
+    var mp = map(list.map(function (x) { return { area: x.area, value: x.value }; }), { label: 'ความสุข', fmt: function (v) { return Number(v).toFixed(2); } });
+    html += '<div class="jpt-grid">' + (mp ? panel('แผนที่ระดับความสุข <small class="sub">(' + deep() + ' = สุขมาก)</small>', mp) : '');
+    html += '<div class="jpt-panel"><h4>ระดับความสุขรายพื้นที่ <small class="sub">(สีส้ม = ต่ำกว่าค่าเฉลี่ย ' + Number(d.avg).toFixed(2) + ')</small></h4>' + slot(function () {
+      var c = C();
+      return {
+        type: 'bar',
+        data: { labels: list.map(function (x) { return x.area; }), datasets: [{ label: 'ระดับความสุข', data: list.map(function (x) { return x.value; }),
+          backgroundColor: list.map(function (x) { return x.value < d.avg ? c.orange : c.navy; }), borderRadius: 6 }] },
+        options: { indexAxis: 'y', scales: { x: { min: Math.floor((lo - 0.3) * 10) / 10, max: 10 }, y: { grid: { display: false }, ticks: { autoSkip: false } } },
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (it) { return 'ความสุข ' + Number(it.raw).toFixed(2) + ' / 10'; } } } } },
+      };
+    }, Math.max(240, list.length * 24)) + '</div></div>';
+    return html;
+  }
+
+  /* ---------- แผนที่ 16 อำเภอ (choropleth) — รูปร่างจาก HookMap.html ---------- */
+  var mapSeq = 0;
+  var deep = function () { return '<span class="hk-deep"></span>'; }; // คำว่า สีเข้ม/สีสว่าง เปลี่ยนตามธีมด้วย CSS
+  var mapData = {};
+  /**
+   * rows = [{district|area, value}] · opt = { label, unit, fmt(v), note }
+   * สีเข้ม = ค่ามาก (สีเดียวไล่ระดับ) · แตะ/ชี้อำเภอเพื่อดูตัวเลข · อำเภอที่ไม่มีข้อมูลเป็นสีเทา
+   */
+  function map(rows, opt) {
+    if (!window.HK_MAP) return '';
+    opt = opt || {};
+    var fmt = opt.fmt || function (v) { return n0(v); };
+    var val = {};
+    rows.forEach(function (r) { var k = String(r.district || r.area || '').replace(/^(อำเภอ|อ\.)\s*/, ''); if (HK_MAP.districts[k] && r.value != null) val[k] = Number(r.value); });
+    var keys = Object.keys(val);
+    if (keys.length < 3) return '';
+    var vs = keys.map(function (k) { return val[k]; });
+    var lo = Math.min.apply(null, vs), hi = Math.max.apply(null, vs);
+    // สีตามธีมผ่านตัวแปร CSS (--map-lo → --map-hi) — สลับโหมดสว่าง/มืดแล้วเปลี่ยนสีทันทีโดยไม่ต้องวาดใหม่
+    var tOf = function (v) { return hi > lo ? (v - lo) / (hi - lo) : 0.5; };
+    var col = function (v) { return 'color-mix(in srgb, var(--map-hi) ' + Math.round((0.12 + tOf(v) * 0.88) * 100) + '%, var(--map-lo))'; };
+    // ตัวอักษร + ขอบตัวอักษรตัดกับสีพื้น (อ่านออกแม้ชื่อล้นไปทับอำเภอข้างเคียง)
+    var ink = function (v) { return tOf(v) > 0.55 ? 't-hi' : 't-lo'; };
+    var id = 'hkm' + (++mapSeq);
+    var sorted = keys.slice().sort(function (a, b) { return val[b] - val[a]; });
+    mapData[id] = { val: val, fmt: fmt, label: opt.label || '', unit: opt.unit || '', rank: sorted };
+    var D = HK_MAP.districts;
+    var svg = '<svg viewBox="-4 -4 ' + (HK_MAP.w + 8) + ' ' + (HK_MAP.h + 8) + '" class="hk-map-svg" role="img" aria-label="แผนที่จังหวัดสงขลา ' + esc(opt.label || '') + ' รายอำเภอ">'
+      + '<text x="64" y="206" class="hk-lake">ทะเลสาบ</text><text x="64" y="217" class="hk-lake">สงขลา</text>'
+      + Object.keys(D).map(function (k) {
+        var has = val[k] != null;
+        return '<path d="' + D[k].d + '" data-d="' + esc(k) + '" style="fill:' + (has ? col(val[k]) : 'var(--map-none)') + '"><title>' + esc(k) + (has ? ': ' + esc(fmt(val[k])) : ': ไม่มีข้อมูล') + '</title></path>';
+      }).join('')
+      + Object.keys(D).map(function (k) {
+        var has = val[k] != null;
+        return '<text x="' + D[k].x + '" y="' + D[k].y + '" class="hk-map-lbl ' + (has ? ink(val[k]) : 't-none') + '">' + esc(k) + '</text>';
+      }).join('')
+      + '</svg>';
+    var legend = '<div class="hk-map-legend"><span>' + esc(fmt(lo)) + '</span><i style="background:linear-gradient(90deg,' + col(lo) + ',' + col(hi) + ')"></i><span>' + esc(fmt(hi)) + '</span></div>';
+    return '<div class="hk-map" id="' + id + '">' + svg + legend
+      + '<div class="hk-map-info" aria-live="polite">' + (opt.note ? esc(opt.note) + ' · ' : '') + 'แตะอำเภอบนแผนที่เพื่อดูตัวเลข</div></div>';
+  }
+
+  // แตะ/ชี้อำเภอ → แสดงชื่อ ค่า และอันดับ (ตัวจัดการเดียวทั้งหน้า ไม่ต้องผูกใหม่ทุกครั้งที่วาด)
+  function mapPick(e) {
+    var p = e.target.closest && e.target.closest('.hk-map path[data-d]');
+    if (!p) return;
+    var box = p.closest('.hk-map');
+    var m = mapData[box.id];
+    if (!m) return;
+    var k = p.getAttribute('data-d');
+    Array.prototype.forEach.call(box.querySelectorAll('path.on'), function (x) { x.classList.remove('on'); });
+    p.classList.add('on');
+    p.parentNode.insertBefore(p, p.parentNode.querySelector('.hk-map-lbl')); // ยกขึ้นเหนืออำเภออื่น (แต่อยู่ใต้ชื่ออำเภอ) ให้เส้นขอบเห็นครบ
+    var info = box.querySelector('.hk-map-info');
+    info.innerHTML = m.val[k] == null ? '<b>อ.' + esc(k) + '</b> · ไม่มีข้อมูล'
+      : '<b>อ.' + esc(k) + '</b> · ' + esc(m.label) + ' <b>' + esc(m.fmt(m.val[k])) + '</b> · อันดับ ' + (m.rank.indexOf(k) + 1) + ' จาก ' + m.rank.length;
+  }
+  if (typeof document !== 'undefined') {
+    document.addEventListener('click', mapPick);
+    document.addEventListener('mouseover', function (e) { if (window.matchMedia && window.matchMedia('(hover: hover)').matches) mapPick(e); });
+  }
+
+  /* ---------- ส่วนประกอบที่ใช้ซ้ำ ---------- */
+  var PALETTE = function () { var c = C(); return [c.navy, c.amber, c.green, c.orange, '#8b5cf6', '#06b6d4', '#94a3b8', '#e11d48']; };
+  var short = function (s, n) { s = String(s || ''); return s.length > n ? s.slice(0, n) + '…' : s; };
+  function panel(title, inner, wide) { return '<div class="jpt-panel"' + (wide ? ' style="grid-column:1/-1"' : '') + '><h4>' + title + '</h4>' + inner + '</div>'; }
+  function grid(a, b) { return '<div class="jpt-grid">' + a + (b || '') + '</div>'; }
+
+  /** โดนัท: items = [{label, value}] */
+  function donut(items, unit, height) {
+    return slot(function () {
+      var tot = items.reduce(function (s, x) { return s + x.value; }, 0);
+      return { type: 'doughnut', data: { labels: items.map(function (x) { return x.label; }), datasets: [{ data: items.map(function (x) { return x.value; }), backgroundColor: PALETTE(), borderWidth: 0 }] },
+        options: { cutout: '60%', plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: function (it) { return it.label + ': ' + n0(it.raw) + ' ' + unit + ' (' + pct(tot ? it.raw / tot * 100 : 0) + ')'; } } } } } };
+    }, height || 260);
+  }
+
+  /** แท่งแนวนอนเรียงค่า + เน้นสีที่อยู่ฝั่ง "ควรติดตาม" ของค่าเฉลี่ย (flag: 'below' | 'above' | null) */
+  function hbar(list, label, fmt, avg, flag, minX) {
+    return slot(function () {
+      var c = C();
+      var bad = function (v) { return avg != null && (flag === 'below' ? v < avg : flag === 'above' ? v > avg : false); };
+      return {
+        type: 'bar',
+        data: { labels: list.map(function (x) { return x.label; }), datasets: [{ label: label, data: list.map(function (x) { return x.value; }),
+          backgroundColor: list.map(function (x) { return bad(x.value) ? c.orange : c.navy; }), borderRadius: 6 }] },
+        options: { indexAxis: 'y', scales: { x: { min: minX, ticks: { callback: function (v) { return fmt(v); } } }, y: { grid: { display: false }, ticks: { autoSkip: false } } },
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (it) { return label + ': ' + fmt(it.raw); } } } } },
+      };
+    }, Math.max(220, list.length * 24));
+  }
+
+  /** แท่งแนวนอน ชาย/หญิง ซ้อนกัน */
+  function genderBar(groups, height) {
+    return slot(function () {
+      var c = C();
+      return {
+        type: 'bar',
+        data: { labels: groups.map(function (g) { return short(g.label, 22); }), datasets: [
+          { label: 'ชาย', data: groups.map(function (g) { return g.male; }), backgroundColor: c.male, borderRadius: 4, stack: 's' },
+          { label: 'หญิง', data: groups.map(function (g) { return g.female; }), backgroundColor: c.female, borderRadius: 4, stack: 's' },
+        ] },
+        options: { indexAxis: 'y', scales: { x: { stacked: true, ticks: { callback: function (v) { return n0(v); } } }, y: { stacked: true, grid: { display: false }, ticks: { autoSkip: false } } },
+          plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { title: function (it) { return groups[it[0].dataIndex].label; }, label: function (it) { return it.dataset.label + ': ' + n0(it.raw) + ' คน'; } } } } },
+      };
+    }, height || Math.max(240, groups.length * 26));
+  }
+
+  function table(head, rows) {
+    return '<details class="jpt-table"><summary>ดูตารางตัวเลข</summary><div class="tablewrap"><table><thead><tr>' + head.map(function (h, i) { return '<th' + (i ? ' class="n"' : '') + '>' + h + '</th>'; }).join('')
+      + '</tr></thead><tbody>' + rows.map(function (r) { return '<tr>' + r.map(function (c, i) { return '<td' + (i ? ' class="n"' : '') + '>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div></details>';
+  }
+
+  var popOf = function (d) { return d.population ? function (v) { return pct(v / d.population * 100); } : function () { return '-'; }; };
+
+  /* ---------- รายได้ / รายจ่ายเฉลี่ยของครัวเรือน ---------- */
+  function jptMoney(d) {
+    var inc = d.kind === 'jpt_income';
+    var areas = (d.areas || []).slice().sort(function (a, b) { return b.avgHh - a.avgHh; });
+    var html = kpis([
+      [n0(Math.round(d.avgHh)) + '<small> บาท</small>', d.word + 'เฉลี่ยต่อครัวเรือน/ปี'],
+      d.avgPerson ? [n0(Math.round(d.avgPerson)) + '<small> บาท</small>', d.word + 'เฉลี่ยต่อคน/ปี'] : null,
+      [n0(Math.round(d.avgHh / 12)) + '<small> บาท</small>', 'เฉลี่ยต่อครัวเรือน/เดือน'],
+      [n0(d.households), 'ครัวเรือน'],
+    ]);
+    var mp = map(areas.map(function (a) { return { area: a.area, value: a.avgHh }; }), { label: d.word + '/ครัวเรือน/ปี', fmt: function (v) { return n0(Math.round(v)) + ' บาท'; } });
+    html += grid(
+      mp ? panel('แผนที่' + d.word + 'เฉลี่ยต่อครัวเรือน <small class="sub">(' + deep() + ' = ' + d.word + 'สูง)</small>', mp) : '',
+      panel(d.word + 'เฉลี่ยต่อครัวเรือนรายพื้นที่ <small class="sub">(สีส้ม = ' + (inc ? 'ต่ำกว่า' : 'สูงกว่า') + 'ค่าเฉลี่ย ' + n0(Math.round(d.avgHh)) + ')</small>',
+        hbar(areas.map(function (a) { return { label: a.area, value: a.avgHh }; }), d.word + 'เฉลี่ย/ครัวเรือน', function (v) { return n0(Math.round(v)); }, d.avgHh, inc ? 'below' : 'above')));
+    html += grid(panel('ที่มาของ' + d.word + ' (ทั้งพื้นที่)', donut((d.sources || []).map(function (s) { return { label: s.label, value: s.value }; }), 'บาท', 280), true));
+    html += table(['พื้นที่', 'ครัวเรือน', 'คน', d.word + '/ครัวเรือน', d.word + '/คน'], areas.map(function (a) {
+      return [esc(a.area), n0(a.households), n0(a.population), n0(Math.round(a.avgHh)), a.avgPerson != null ? n0(Math.round(a.avgPerson)) : '-'];
+    }));
+    return html;
+  }
+
+  /* ---------- อาชีพ / ศาสนา ---------- */
+  function jptOcc(d) {
+    var groups = (d.groups || []).slice().sort(function (a, b) { return b.total - a.total; });
+    var p = popOf(d);
+    var work = groups.filter(function (g) { return !/กำลังศึกษา|ไม่มีอาชีพ|พิการ|ยังไม่ถึงวัย/.test(g.label); });
+    var html = kpis([
+      [n0(d.population), 'ประชากร'],
+      work[0] ? [esc(work[0].label), 'อาชีพหลัก · ' + p(work[0].total)] : null,
+      d.agri != null ? [p(d.agri), 'ภาคเกษตร (' + n0(d.agri) + ' คน)'] : null,
+      d.none != null ? [n0(d.none), 'ไม่มีอาชีพ (คน)'] : null,
+    ]);
+    html += grid(panel('ประชากรตามประเภทอาชีพ (ชาย/หญิง)', genderBar(groups), true));
+    html += table(['อาชีพ', 'ชาย', 'หญิง', 'รวม', 'ร้อยละ'], groups.map(function (g) { return [esc(g.label), n0(g.male), n0(g.female), n0(g.total), p(g.total)]; }));
+    return html;
+  }
+
+  function jptRelig(d) {
+    var groups = (d.groups || []).slice().sort(function (a, b) { return b.total - a.total; });
+    var p = popOf(d);
+    var html = kpis(groups.slice(0, 4).map(function (g) { return [p(g.total), 'ศาสนา' + esc(g.label) + ' (' + n0(g.total) + ' คน)']; }));
+    html += grid(panel('สัดส่วนประชากรตามศาสนา', donut(groups.map(function (g) { return { label: g.label, value: g.total }; }), 'คน', 260)),
+      panel('ชาย/หญิง ตามศาสนา', genderBar(groups, 260)));
+    return html;
+  }
+
+  /* ---------- อาชีพ × ช่วงอายุ (ตารางความร้อน) ---------- */
+  function jptOccAge(d) {
+    var rows = (d.rows || []).slice().sort(function (a, b) { return b.total - a.total; });
+    var max = 0;
+    rows.forEach(function (r) { r.values.forEach(function (v) { if (v > max) max = v; }); });
+    var html = kpis([
+      [n0(d.oldWork), 'ผู้สูงอายุ 60+ ที่ยังประกอบอาชีพ' + (d.old ? ' (' + pct(d.oldWork / d.old * 100) + ')' : '')],
+      [n0(d.joblessWork), 'วัย 15–59 ปี ที่ไม่มีอาชีพ'],
+      [n0(d.kidsWork), 'เด็กต่ำกว่า 15 ปีที่ประกอบอาชีพ'],
+      [n0(d.population), 'ประชากรในตาราง'],
+    ]);
+    var cell = function (v) {
+      var a = max ? Math.sqrt(v / max) : 0;
+      return '<td class="n" style="background:rgba(29,78,216,' + (a * 0.55).toFixed(3) + ');' + (a > 0.75 ? 'color:#fff' : '') + '">' + (v ? n0(v) : '·') + '</td>';
+    };
+    html += '<div class="jpt-panel" style="margin-top:12px"><h4>จำนวนคน: ประเภทอาชีพ × ช่วงอายุ <small class="sub">(' + deep() + ' = คนมาก)</small></h4><div class="tablewrap"><table class="heat"><thead><tr><th>อาชีพ</th>'
+      + (d.ages || []).map(function (a) { return '<th class="n">' + esc(a) + '</th>'; }).join('') + '<th class="n">รวม</th></tr></thead><tbody>'
+      + rows.map(function (r) { return '<tr><td>' + esc(r.label) + '</td>' + r.values.map(cell).join('') + '<td class="n"><b>' + n0(r.total) + '</b></td></tr>'; }).join('')
+      + '</tbody></table></div></div>';
+    return html;
+  }
+
+  /* ---------- ตารางรายพื้นที่: ประชากร / คนต่อครัวเรือน / เขตการปกครอง ---------- */
+  function jptArea(d) {
+    var t = d.total || {};
+    var areas = (d.areas || []).slice();
+    if (d.kind === 'jpt_zone') {
+      var html = kpis(areas.slice().sort(function (a, b) { return b.population - a.population; }).map(function (a) {
+        return [pct(t.population ? a.population / t.population * 100 : 0), esc(a.area) + ' (' + n0(a.population) + ' คน)'];
+      }));
+      return html + grid(panel('ประชากรตามเขตการปกครอง', donut(areas.map(function (a) { return { label: a.area, value: a.population }; }), 'คน', 260)),
+        panel('ครัวเรือนตามเขตการปกครอง', donut(areas.map(function (a) { return { label: a.area, value: a.households }; }), 'ครัวเรือน', 260)));
+    }
+    if (d.kind === 'jpt_hhsize') {
+      var s = areas.slice().sort(function (a, b) { return b.perHh - a.perHh; });
+      return kpis([[Number(t.perHh).toFixed(2), 'คนต่อครัวเรือน (เฉลี่ย)'], [esc(s[0].area), 'ครัวเรือนใหญ่สุด ' + s[0].perHh.toFixed(2) + ' คน'],
+        [esc(s[s.length - 1].area), 'ครัวเรือนเล็กสุด ' + s[s.length - 1].perHh.toFixed(2) + ' คน'], [n0(t.households), 'ครัวเรือน']])
+        + grid(panel('แผนที่คนต่อครัวเรือน <small class="sub">(' + deep() + ' = ครัวเรือนใหญ่)</small>', map(s.map(function (a) { return { area: a.area, value: a.perHh }; }), { label: 'คนต่อครัวเรือน', fmt: function (v) { return Number(v).toFixed(2) + ' คน'; } })),
+          panel('จำนวนคนต่อครัวเรือนรายพื้นที่ <small class="sub">(สีส้ม = ต่ำกว่าค่าเฉลี่ย — ครัวเรือนเล็ก/อยู่ลำพังมากกว่า)</small>',
+            hbar(s.map(function (a) { return { label: a.area, value: a.perHh }; }), 'คน/ครัวเรือน', function (v) { return Number(v).toFixed(2); }, t.perHh, 'below', Math.max(0, Math.floor(s[s.length - 1].perHh * 10 - 3) / 10))));
+    }
+    var byPop = areas.slice().sort(function (a, b) { return b.population - a.population; });
+    return kpis([[n0(t.population), 'ประชากร (ชาย ' + n0(t.male) + ' · หญิง ' + n0(t.female) + ')'], [n0(t.households), 'ครัวเรือน'],
+      [esc(byPop[0].area), 'ประชากรมากสุด ' + n0(byPop[0].population)], [areas.length, 'พื้นที่']])
+      + grid(panel('แผนที่ประชากรรายอำเภอ <small class="sub">(' + deep() + ' = คนมาก)</small>', map(byPop.map(function (a) { return { area: a.area, value: a.population }; }), { label: 'ประชากร', fmt: function (v) { return n0(v) + ' คน'; } })),
+        panel('ประชากรรายพื้นที่ (ชาย/หญิง)', genderBar(byPop.map(function (a) { return { label: a.area, male: a.male || 0, female: a.female || 0 }; }))))
+      + table(['พื้นที่', 'ครัวเรือน', 'ชาย', 'หญิง', 'รวม', 'คน/ครัวเรือน'], byPop.map(function (a) { return [esc(a.area), n0(a.households), n0(a.male), n0(a.female), n0(a.population), a.perHh != null ? a.perHh.toFixed(2) : '-']; }));
+  }
+
+  /* ---------- ที่พักอาศัย ---------- */
+  function jptHousing(d) {
+    var cats = d.categories || [];
+    var own = d.own >= 0 ? cats[d.own] : null;
+    var rest = cats.filter(function (c, i) { return i !== d.own; }).sort(function (a, b) { return b.value - a.value; });
+    var notOwn = function (a) { return own && a.households ? (a.households - a.values[d.own]) / a.households * 100 : 0; };
+    var areas = (d.areas || []).slice().sort(function (a, b) { return notOwn(b) - notOwn(a); });
+    var avgNot = own ? 100 - own.pct : null;
+    var html = kpis([own ? [pct(own.pct), 'อยู่บนที่ดินของตนเอง'] : null].concat(rest.slice(0, 3).map(function (c) { return [n0(c.value), esc(c.label) + ' (ครัวเรือน)']; })));
+    if (own) {
+      html += grid(panel('แผนที่ครัวเรือนที่ไม่ได้อยู่บนที่ดินตนเอง <small class="sub">(' + deep() + ' = สัดส่วนสูง)</small>',
+        map(areas.map(function (a) { return { area: a.area, value: Math.round(notOwn(a) * 100) / 100 }; }), { label: 'ไม่ได้อยู่บนที่ดินตนเอง', fmt: function (v) { return pct(v); } })),
+      panel('ร้อยละที่ไม่ได้อยู่บนที่ดินตนเอง รายพื้นที่ <small class="sub">(สีส้ม = สูงกว่าค่าเฉลี่ย ' + pct(avgNot) + ')</small>',
+        hbar(areas.map(function (a) { return { label: a.area, value: Math.round(notOwn(a) * 100) / 100 }; }), 'ไม่ได้อยู่บนที่ดินตนเอง', function (v) { return v + '%'; }, avgNot, 'above')));
+    }
+    html += grid(panel('ครัวเรือนที่ไม่ได้อยู่บนที่ดินของตนเอง แยกประเภท', hbar(rest.map(function (c) { return { label: c.label, value: c.value }; }), 'ครัวเรือน', n0, null, null), true));
+    html += table(['พื้นที่', 'ครัวเรือน'].concat(cats.map(function (c) { return esc(c.label); })), areas.map(function (a) { return [esc(a.area), n0(a.households)].concat(a.values.map(n0)); }));
+    return html;
+  }
+
+  /* ---------- เปรียบเทียบระหว่างปี ---------- */
+  function jptCompare(d) {
+    var y = d.years || [];
+    var last = y.length - 1;
+    var ch = (d.indicators || []).filter(function (x) { return x.pcts[0] != null && x.pcts[last] != null; })
+      .map(function (x) { return { no: x.no, name: x.name, diff: x.pcts[last] - x.pcts[0], pcts: x.pcts }; });
+    var down = ch.filter(function (x) { return x.diff < 0; }).sort(function (a, b) { return a.diff - b.diff; });
+    var up = ch.filter(function (x) { return x.diff > 0; });
+    var html = kpis([[up.length, 'ตัวชี้วัดดีขึ้น'], [down.length, 'ตัวชี้วัดแย่ลง'], [ch.length - up.length - down.length, 'เท่าเดิม'], [y[0] + '→' + y[last], 'ปีที่เปรียบเทียบ']]);
+    var top = ch.slice().sort(function (a, b) { return Math.abs(b.diff) - Math.abs(a.diff); }).slice(0, 12);
+    html += '<div class="jpt-panel" style="margin-top:12px"><h4>ร้อยละผ่านเกณฑ์ที่เปลี่ยนไปมากที่สุด (จุด) <small class="sub">(สีส้ม = แย่ลง)</small></h4>' + (top.length ? slot(function () {
+      var c = C();
+      return { type: 'bar', data: { labels: top.map(function (x) { return 'ข้อ ' + x.no + ' ' + short(x.name, 24); }), datasets: [{ label: 'เปลี่ยนแปลง', data: top.map(function (x) { return x.diff; }),
+        backgroundColor: top.map(function (x) { return x.diff < 0 ? c.orange : c.green; }), borderRadius: 6 }] },
+        options: { indexAxis: 'y', scales: { y: { grid: { display: false }, ticks: { autoSkip: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: {
+          title: function (it) { var x = top[it[0].dataIndex]; return 'ข้อ ' + x.no + ' ' + x.name; },
+          label: function (it) { var x = top[it.dataIndex]; return x.pcts.map(function (v, i) { return y[i] + ': ' + (v == null ? '-' : pct(v)); }).join(' · ') + ' (' + (x.diff > 0 ? '+' : '') + x.diff.toFixed(2) + ' จุด)'; } } } } } };
+    }, Math.max(240, top.length * 26)) : '<div class="sub">ไม่มีการเปลี่ยนแปลง</div>') + '</div>';
+    return html;
+  }
+
+  // ชนิดรายงาน → ชื่อแท็บสั้น + หมวด (ใช้ทั้งหน้าเว็บประชาชนและแดชบอร์ดเจ้าหน้าที่)
+  var KINDS = {
+    jpt_summary: ['สรุป 38 ตัวชี้วัด', 'ภาพรวม'], jpt_fail: ['ตัวชี้วัดตกเกณฑ์', 'ภาพรวม'], jpt_compare: ['เทียบรายปี', 'ภาพรวม'], jpt_happy: ['ความสุข', 'ภาพรวม'],
+    jpt_income: ['รายได้', 'เศรษฐกิจ'], jpt_expense: ['รายจ่าย', 'เศรษฐกิจ'], jpt_occ: ['อาชีพ', 'เศรษฐกิจ'], jpt_occage: ['อาชีพ×อายุ', 'เศรษฐกิจ'],
+    jpt_age: ['ช่วงอายุ', 'ประชากร'], jpt_age_intl: ['อายุ 5 ปี (สากล)', 'ประชากร'], jpt_age_kcc: ['อายุแบบ กชช.2ค', 'ประชากร'], jpt_areapop: ['ประชากรรายอำเภอ', 'ประชากร'],
+    jpt_hhsize: ['คนต่อครัวเรือน', 'ประชากร'], jpt_zone: ['เขตการปกครอง', 'ประชากร'], jpt_relig: ['ศาสนา', 'ประชากร'], jpt_housing: ['ที่พักอาศัย', 'ที่อยู่อาศัย'],
+  };
+  function jptTab(kind) { return (KINDS[kind] || [kind, 'อื่น ๆ'])[0]; }
+  function jptGroup(kind) { return (KINDS[kind] || [kind, 'อื่น ๆ'])[1]; }
+
+  /* ---------- ตัวจัดรูปแบบตัวเลขตามหน่วย ---------- */
+  function fmtBy(unit, money) {
+    if (money || /บาท/.test(unit || '')) return function (v) { v = Number(v) || 0; return Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString('th-TH', { maximumFractionDigits: 2 }) + ' ล้านบาท' : n0(Math.round(v)) + ' บาท'; };
+    if (/%|ร้อยละ/.test(unit || '')) return function (v) { return pct(Number(v) || 0); };
+    return function (v) { v = Number(v) || 0; return (v % 1 ? v.toLocaleString('th-TH', { maximumFractionDigits: 2 }) : n0(v)) + (unit ? ' ' + unit : ''); };
+  }
+  var isDistrictList = function (rows) {
+    if (!window.HK_MAP) return false;
+    var hit = rows.filter(function (r) { return HK_MAP.districts[String(r.district || r.key || r.area || '').replace(/^(อำเภอ|อ\.)\s*/, '')]; }).length;
+    return hit >= 3 && hit >= rows.length * 0.6;
+  };
+
+  /**
+   * กราฟเปรียบเทียบรายพื้นที่แบบเดียวกับ จปฐ.: แผนที่ + แท่งแนวนอน (สีส้ม = ต่ำกว่าค่าเฉลี่ย)
+   * rows = [{key|district, value}] · opt = { label, unit, money, flag: 'below'|'above'|null }
+   */
+  function distBlock(rows, opt) {
+    opt = opt || {};
+    var fmt = fmtBy(opt.unit, opt.money);
+    var list = rows.map(function (r) { return { label: String(r.key || r.district || r.area || ''), value: Number(r.value) || 0 }; })
+      .filter(function (r) { return r.label; }).sort(function (a, b) { return b.value - a.value; });
+    if (!list.length) return '';
+    var avg = list.reduce(function (s, x) { return s + x.value; }, 0) / list.length;
+    var flag = opt.flag === undefined ? 'below' : opt.flag;
+    var bar = panel(esc(opt.label || '') + ' <small class="sub">' + (flag ? '(สีส้ม = ' + (flag === 'below' ? 'ต่ำกว่า' : 'สูงกว่า') + 'ค่าเฉลี่ย ' + esc(fmt(avg)) + ')' : '') + '</small>',
+      hbar(list, opt.label || 'ค่า', fmt, flag ? avg : null, flag));
+    var mp = isDistrictList(rows) ? map(list.map(function (x) { return { district: x.label, value: x.value }; }), { label: opt.label, fmt: fmt }) : '';
+    return mp ? grid(panel('แผนที่' + esc(opt.label || '') + ' <small class="sub">(' + deep() + ' = ค่ามาก)</small>', mp), bar) : grid(bar.replace('class="jpt-panel"', 'class="jpt-panel" style="grid-column:1/-1"'));
+  }
+
+  /**
+   * แท็บข้อมูล (โมดูล) ของคลังข้อมูล: การ์ดตัวเลข + กราฟรายพื้นที่ — หน้าตาเดียวกับ จปฐ.
+   * m = { tiles: [{label, text}], chart: { label, unit, money, data: [{key, value}] } }
+   */
+  function moduleBlock(m) {
+    var tiles = (m.tiles || []).filter(function (t) { return t.text && t.text !== '-'; }).slice(0, 4);
+    var html = kpis(tiles.map(function (t) { return [esc(t.text), esc(t.label)]; }));
+    if (m.chart && m.chart.data && m.chart.data.length > 1) {
+      html += distBlock(m.chart.data, { label: m.chart.label, unit: m.chart.unit, money: m.chart.money, flag: m.chart.flag === undefined ? 'below' : m.chart.flag });
+    }
+    return html;
+  }
+
+  /* ---------- ความคืบหน้าการจัดเก็บ จปฐ. (เชื่อมจากระบบความคืบหน้า) ---------- */
+  function progressBlock(d) {
+    var t = d.total || {};
+    var list = (d.districts || []).slice().sort(function (a, b) { return b.pct - a.pct; });
+    var html = kpis([
+      [pct(t.pct || 0), 'จัดเก็บสุทธิแล้ว (ทั้งจังหวัด)'],
+      [n0(t.net) + '<small>/' + n0(t.target) + '</small>', 'ครัวเรือน (สุทธิ/เป้าหมาย)'],
+      [n0(Math.max(0, t.target - t.net)), 'ครัวเรือนที่ยังต้องจัดเก็บ'],
+      [n0((t.dup || 0) + (t.pending || 0)), 'ซ้ำ ' + n0(t.dup) + ' · รอตรวจสอบ ' + n0(t.pending)],
+    ]);
+    html += '<div class="hk-prog" role="img" aria-label="ความคืบหน้า ' + pct(t.pct || 0) + '"><i style="width:' + Math.min(100, t.pct || 0) + '%"></i></div>';
+    if (list.length) {
+      html += distBlock(list.map(function (x) { return { district: x.district, value: Math.round(x.pct * 100) / 100 }; }), { label: 'ร้อยละจัดเก็บสุทธิ', unit: '%', flag: 'below' });
+    }
+    var h = (d.history || []).filter(function (x) { return x.date; });
+    if (h.length > 1) {
+      html += grid(panel('แนวโน้มความคืบหน้ารายวัน (ร้อยละทั้งจังหวัด)', slot(function () {
+        var c = C();
+        return { type: 'line', data: { labels: h.map(function (x) { var p = x.date.split('-'); return Number(p[2]) + '/' + Number(p[1]); }),
+          datasets: [{ label: 'ร้อยละสุทธิ', data: h.map(function (x) { return x.pct; }), borderColor: c.navy, backgroundColor: c.soft, fill: true, tension: 0.25, pointRadius: 3 }] },
+          options: { scales: { y: { beginAtZero: true, ticks: { callback: function (v) { return v + '%'; } } }, x: { grid: { display: false } } },
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (it) { var x = h[it.dataIndex]; return pct(x.pct) + ' · สุทธิ ' + n0(x.net) + ' ครัวเรือน'; } } } } } };
+      }, 240), true));
+    }
+    html += table(['อำเภอ', 'เป้าหมาย', 'ผลจัดเก็บ', 'ซ้ำ', 'รอตรวจสอบ', 'สุทธิ', 'ร้อยละ'], list.map(function (x) {
+      return [esc(x.district), n0(x.target), n0(x.collected), n0(x.dup), n0(x.pending), n0(x.net), pct(x.pct)];
+    }));
+    if (d.synced) html += '<div class="sub" style="margin-top:8px">🔗 ซิงก์จากระบบความคืบหน้า จปฐ. ล่าสุด ' + esc(d.synced.at) + ' น. (ข้อมูลต้นทาง ณ ' + esc(d.synced.source) + ') · ดึงใหม่อัตโนมัติทุกชั่วโมง</div>';
+    return html;
+  }
+
+  /** ทำลายเฉพาะกราฟที่อยู่ในกล่องนี้ (ไม่กระทบกราฟหน้าอื่น) */
+  function destroyIn(el) {
+    live = live.filter(function (c) {
+      if (el && c.canvas && el.contains(c.canvas)) { try { c.destroy(); } catch (e) { /* ไม่เป็นไร */ } return false; }
+      return true;
+    });
+  }
+
+  function jptBlock(detail, opt) {
+    if (!detail) return '';
+    var k = detail.kind;
+    if (k === 'jpt_progress') return progressBlock(detail);
+    if (k === 'jpt_summary' || k === 'jpt_fail') return jptSummary(detail, opt);
+    if (k === 'jpt_age' || k === 'jpt_age_intl' || k === 'jpt_age_kcc') return jptAge(detail);
+    if (k === 'jpt_happy') return jptHappy(detail);
+    if (k === 'jpt_income' || k === 'jpt_expense') return jptMoney(detail);
+    if (k === 'jpt_occ') return jptOcc(detail);
+    if (k === 'jpt_relig') return jptRelig(detail);
+    if (k === 'jpt_occage') return jptOccAge(detail);
+    if (k === 'jpt_areapop' || k === 'jpt_hhsize' || k === 'jpt_zone') return jptArea(detail);
+    if (k === 'jpt_housing') return jptHousing(detail);
+    if (k === 'jpt_compare') return jptCompare(detail);
+    return '';
+  }
+
+  return {
+    slot: slot, mount: mount, destroyAll: destroyAll, destroyIn: destroyIn, themeButton: themeButton, isDark: isDark, cssVar: cssVar,
+    jptBlock: jptBlock, jptTab: jptTab, jptGroup: jptGroup, map: map, defaults: defaults,
+    moduleBlock: moduleBlock, progressBlock: progressBlock, distBlock: distBlock, fmtBy: fmtBy,
+    ui: { kpis: kpis, panel: panel, grid: grid, hbar: hbar, donut: donut, table: table },
+  };
+})();
+</script>
+
+<script>
+function main(D) { // D = ข้อมูลสาธารณะ (ฝังจาก Apps Script หรือโหลดจาก ?api=public เมื่อเปิดบน GitHub Pages)
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function n0(v) { return Number(v || 0).toLocaleString('th-TH'); }
+  function baht(n) { n = Number(n) || 0; return n >= 1e6 ? (Math.round(n / 1e4) / 100).toLocaleString('th-TH') + ' ล้านบาท' : Math.round(n).toLocaleString('th-TH') + ' บาท'; }
+  function $(s) { return document.querySelector(s); }
+  var TEL = D.tel || '074311674';
+
+  /* ---------- ข้อความสั้น: ย่อหน้าแรกเป็นข้อความนำ ที่เหลือพับไว้ใน "อ่านรายละเอียด" ---------- */
+  function split(body) {
+    var parts = String(body || '').split(/\n\s*\n/);
+    var lead = parts.shift() || '';
+    var rest = parts.join('\n\n');
+    if (lead.length > 170) { rest = String(body); lead = lead.slice(0, 150).replace(/\s+\S*$/, '') + '…'; }
+    return { lead: lead, rest: rest };
+  }
+  function linkBtn(url, label, cls) {
+    if (!url) return '';
+    return '<a class="btn' + (cls ? ' ' + cls : '') + '" href="' + esc(url) + '">' + label + '</a>';
+  }
+  function goBtn(view, label, cls) { return '<button type="button" class="btn' + (cls ? ' ' + cls : '') + '" data-go="' + view + '">' + label + '</button>'; }
+  function statBlock(x) {
+    if (!(x.stats && x.stats.length)) return '';
+    return '<details class="more"><summary>📊 ดูตัวเลขจังหวัดสงขลา</summary>' + x.stats.map(function (m) {
+      var mp = m.map ? HK.map(m.map.rows, { label: m.map.label, fmt: HK.fmtBy(m.map.unit, m.map.money) }) : '';
+      return '<div class="stat"><div class="meta">' + esc(m.name) + ' · ปีงบ ' + esc(m.fy) + '</div>'
+        + HK.ui.kpis(m.tiles.map(function (t) { return [esc(t.text), esc(t.label)]; })) + mp + '</div>';
+    }).join('') + '</details>';
+  }
+  /** รายการพับได้: หัวข้อเป็นปุ่มใหญ่ → ข้อความนำ + ปุ่ม + รายละเอียดพับไว้ */
+  function acc(x, opt) {
+    opt = opt || {};
+    var t = split(x.body);
+    var btns = '';
+    if (x.url) btns += linkBtn(x.url, /^tel:/.test(x.url) ? '📞 โทร' : '🔗 ' + esc(x.urlLabel || 'ดูข้อมูล'));
+    if (x.url2) btns += linkBtn(x.url2, '🔗 ' + esc(x.url2Label || 'ข้อมูลเพิ่มเติม'), 'alt');
+    if (opt.contact) btns += goBtn('districts', '📍 ติดต่อ พช.อำเภอ', 'alt');
+    return '<details class="acc"' + (opt.color ? ' style="--c:' + esc(opt.color) + '"' : '') + (opt.open ? ' open' : '') + '><summary>'
+      + (opt.emoji ? '<span class="e">' + opt.emoji + '</span>' : '') + esc(x.title) + '</summary><div class="in">'
+      + (x.image ? '<img src="' + esc(x.image) + '" alt="" style="width:100%;border-radius:12px;margin-bottom:8px">' : '')
+      + '<p class="lead">' + esc(t.lead) + '</p>' + (btns ? '<div class="btns">' + btns + '</div>' : '')
+      + statBlock(x)
+      + (t.rest ? '<details class="more"><summary>📖 อ่านรายละเอียด</summary><p>' + esc(t.rest) + '</p></details>' : '')
+      + '</div></details>';
+  }
+  function view(id, title, sub, inner) {
+    return '<section class="view" id="v-' + id + '"><button type="button" class="back" data-go="home">◀ หน้าแรก</button>'
+      + '<h2>' + title + '</h2>' + (sub ? '<p class="sub">' + sub + '</p>' : '') + inner + '</section>';
+  }
+
+  /* ---------- ตัวเลขเด่น 3 ตัว (จาก จปฐ. ที่เผยแพร่แล้ว) ---------- */
+  var J = D.jpt || [];
+  function jd(kind) { return (J.find(function (x) { return x.detail.kind === kind; }) || {}).detail; }
+  var jSum = jd('jpt_summary'), jAge = jd('jpt_age'), jHap = jd('jpt_happy'), jInc = jd('jpt_income');
+  var hero = [];
+  if (jAge || jSum) hero.push([n0((jAge || jSum).households), 'ครัวเรือน']);
+  if (jHap || (jSum && jSum.happiness != null)) hero.push([Number(jHap ? jHap.avg : jSum.happiness).toFixed(1) + '<small style="font-size:.7em;opacity:.8">/10</small>', 'ความสุข']);
+  if (jInc) hero.push([(Math.round(jInc.avgHh / 1000)).toLocaleString('th-TH') + '<small style="font-size:.7em;opacity:.8">พัน</small>', 'รายได้เฉลี่ย/ปี']);
+  else if (jAge) hero.push([n0(jAge.population), 'ประชากร']);
+  if (hero.length < 3) hero.push([n0(D.districts.length), 'อำเภอ']);
+  $('#hero-kpis').innerHTML = hero.slice(0, 3).map(function (k) { return '<div><b>' + k[0] + '</b><span>' + k[1] + '</span></div>'; }).join('');
+
+  /* ---------- หน้าแรก ---------- */
+  var K = D.knnTours || [];
+  var P = D.projects;
+  var groups = (D.svcGroups || []).filter(function (g) { return D.services.some(function (s) { return s.group === g.key; }); });
+  var TILES = [
+    ['services', '🧭', 'บริการ พช.', D.services.length + ' เรื่อง', '#2563EB'],
+    J.length ? ['jpt', '📊', 'ข้อมูล จปฐ.', 'กราฟ · แผนที่', '#0891B2'] : null,
+    ['projects', '🔍', 'เคลียร์โครงการ', 'งบประมาณ', '#7C3AED'],
+    K.length ? ['knn', '🌾', 'เที่ยวโคก หนอง นา', K.length + ' อำเภอ', '#16A34A'] : null,
+    ['districts', '📍', 'ติดต่ออำเภอ', D.districts.length + ' อำเภอ', '#E11D48'],
+    ['help', '💬', 'ถาม / ร้องเรียน', 'คำถามพบบ่อย', '#D97706'],
+    ['activities', '📸', 'กิจกรรม', 'ภาพกิจกรรม', '#DB2777'],
+    ['about', '🦉', 'เกี่ยวกับเรา', 'ที่ตั้ง · ติดต่อ', '#0B2A78'],
+    ['integrity', '✨', 'พช.ใสสะอาด', 'ความโปร่งใส', '#0F766E'],
+  ].filter(Boolean);
+
+  var html = '<section class="view" id="v-home">';
+  var C = D.jptCampaign;
+  if (C) {
+    html += '<div class="camp" role="note"><b>📣 อาสาสมัครกำลังเก็บข้อมูล จปฐ. ปี 2570</b><div>โปรดให้ข้อมูลตามจริง ข้อมูลเป็นความลับ</div>'
+      + (C.pct != null ? '<div class="hk-prog" role="img" aria-label="ความคืบหน้า ' + esc(C.pct) + '%"><i style="width:' + Math.min(100, Number(C.pct) || 0) + '%"></i></div>'
+        + '<small>ทั้งจังหวัดเก็บแล้ว ' + esc(C.pct) + '%</small>' : '')
+      + '</div>';
+  }
+  html += '<div class="home-grid">' + TILES.map(function (t) {
+    return '<button type="button" class="tile" data-go="' + t[0] + '" style="--c:' + t[4] + '"><span class="ic" aria-hidden="true">' + t[1] + '</span><b>' + t[2] + '</b><small>' + esc(t[3]) + '</small></button>';
+  }).join('') + '</div>';
+  html += '<div class="quick">' + linkBtn('tel:' + TEL, '📞 โทรสำนักงาน 074-311674')
+    + (D.lineUrl ? linkBtn(D.lineUrl, '💚 คุยกับฮูกใน LINE', 'green') : '') + goBtn('districts', '📍 ติดต่ออำเภอใกล้บ้าน', 'alt') + '</div>';
+  html += '</section>';
+
+  /* ---------- บริการ: เลือกหมวด (ปุ่มใหญ่) → รายการพับได้ ---------- */
+  html += view('services', '🧭 บริการ พช.', 'แตะหมวด แล้วแตะเรื่องที่สนใจ',
+    '<div class="grp-grid">' + groups.map(function (g) {
+      return '<button type="button" class="tile" data-grp="' + esc(g.key) + '" style="--c:' + esc(g.color) + '"><span class="ic" style="font-size:2rem" aria-hidden="true">' + g.emoji + '</span><b>' + esc(g.name) + '</b></button>';
+    }).join('') + '</div><div id="svc-list"></div>');
+
+  /* ---------- จปฐ. ---------- */
+  if (J.length) {
+    var jGroups = [];
+    J.forEach(function (x, i) {
+      var g = HK.jptGroup(x.detail.kind);
+      var row = jGroups.find(function (r) { return r.name === g; });
+      if (!row) jGroups.push(row = { name: g, items: [] });
+      row.items.push('<button type="button" data-i="' + i + '"' + (i === 0 ? ' class="on"' : '') + '>' + esc(HK.jptTab(x.detail.kind)) + '</button>');
+    });
+    var fyJ = J.map(function (x) { return Number(x.fy) || 0; }).reduce(function (a, b) { return Math.max(a, b); }, 0);
+    html += view('jpt', '📊 ข้อมูล จปฐ. สงขลา', (fyJ ? 'ปี ' + fyJ + ' · ' : '') + 'ตัวเลขรวม ไม่มีข้อมูลรายบุคคล · แตะหัวข้อเพื่อดูกราฟ',
+      '<div id="jpt-tabs">' + jGroups.map(function (g) {
+        return '<div class="jpt-tabs"><span class="jpt-tg">' + esc(g.name) + '</span>' + g.items.join('') + '</div>';
+      }).join('') + '</div><div class="card wide" id="jpt-body"></div>');
+  }
+
+  /* ---------- เคลียร์โครงการ ---------- */
+  function projBlock() {
+    if (!P.ready) return '<div class="empty">อยู่ระหว่างรวบรวมข้อมูลโครงการ ปีงบประมาณ ' + P.fy + '</div>';
+    var byIssue = {};
+    P.items.forEach(function (x) { var k = x.issue || 'อื่น ๆ'; byIssue[k] = (byIssue[k] || 0) + (Number(x.budget) || 0); });
+    var issues = Object.keys(byIssue).map(function (k) { return { label: k, value: byIssue[k] }; }).sort(function (a, b) { return b.value - a.value; });
+    return HK.ui.kpis([[baht(P.total), 'งบประมาณรวม'], [P.pct + '%', 'เบิกจ่ายแล้ว'], [n0(P.items.length), 'โครงการ']])
+      + '<div class="hk-prog"><i style="width:' + Math.min(100, P.pct) + '%"></i></div>'
+      + (issues.length > 1 ? HK.ui.panel('งบประมาณตามประเด็น', HK.ui.donut(issues, 'บาท', 250)) : '')
+      + '<details class="more"><summary>📋 ดูรายชื่อโครงการทั้งหมด (' + P.items.length + ')</summary>'
+      + '<div class="tablewrap" style="margin-top:8px"><table><thead><tr><th>โครงการ</th><th class="n">งบประมาณ</th><th class="n">เบิกจ่าย</th></tr></thead><tbody>'
+      + P.items.map(function (x) {
+        return '<tr><td>' + esc(x.name) + '<div class="meta">' + esc([x.issue, x.status].filter(Boolean).join(' · ')) + '</div></td><td class="n">'
+          + Number(x.budget).toLocaleString('th-TH') + '</td><td class="n">' + x.pct + '%</td></tr>';
+      }).join('') + '</tbody></table></div></details>';
+  }
+  html += view('projects', '🔍 เคลียร์โครงการ', 'งบประมาณปี ' + P.fy + ' ใช้ทำอะไร', '<div id="proj-body"></div>');
+
+  /* ---------- เที่ยวโคก หนอง นา ---------- */
+  if (K.length) {
+    html += view('knn', '🌾 เที่ยวโคก หนอง นา', '1 อำเภอ 1 ศูนย์เรียนรู้', '<div class="cards">' + K.map(function (t) {
+      var extra = [['📍', t.place], ['🍽️', t.menu], ['🎉', t.event], ['🕘', t.open]].filter(function (x) { return x[1]; })
+        .map(function (x) { return x[0] + ' ' + esc(x[1]); }).join('\n');
+      return '<div class="card"><div class="meta">อ.' + esc(t.district) + '</div><h3>' + esc(t.center) + '</h3>'
+        + (t.highlight ? '<p class="lead">🌱 ' + esc(t.highlight) + '</p>' : '')
+        + '<div class="btns">' + linkBtn(t.mapUrl, '🗺️ แผนที่') + linkBtn(t.clipUrl, '🎬 ดูคลิป', 'alt') + '</div>'
+        + (extra ? '<details class="more"><summary>📖 รายละเอียด</summary><p>' + extra + '</p></details>' : '') + '</div>';
+    }).join('') + '</div>');
+  }
+
+  /* ---------- ติดต่ออำเภอ: ปุ่มโทรใหญ่ ---------- */
+  html += view('districts', '📍 ติดต่อ พช.อำเภอ', 'แตะ "โทร" เพื่อโทรหาสำนักงานพัฒนาชุมชนอำเภอ', '<div class="dist-grid">' + D.districts.map(function (d) {
+    var tel = String(d.phone || '').split(/[,/]/)[0].replace(/\D/g, '');
+    var info = [d.address, d.phone ? '📞 ' + d.phone : '', d.email ? '✉️ ' + d.email : ''].filter(Boolean).join('\n');
+    return '<div class="card"><h3>อำเภอ' + esc(d.name) + '</h3><div class="btns" style="margin-top:6px">' + (tel ? linkBtn('tel:' + tel, '📞 โทร') : '') + linkBtn(d.web, '🌐 เว็บไซต์', 'alt') + '</div>'
+      + (info ? '<details class="more"><summary>🏢 ที่อยู่</summary><p>' + esc(info) + '</p></details>' : '') + '</div>';
+  }).join('') + '</div>');
+
+  /* ---------- ถาม / ร้องเรียน ---------- */
+  html += view('help', '💬 ถาม / ร้องเรียน', 'แตะคำถามเพื่อดูคำตอบ',
+    D.faq.map(function (f) { return acc(f, { emoji: '❓' }); }).join('')
+    + '<h2 style="font-size:1.2rem;margin-top:18px">📢 ช่องทางร้องเรียน</h2>' + D.channels.map(function (c) { return acc(c, { emoji: '📢', color: '#D97706' }); }).join('')
+    + '<div class="quick">' + linkBtn('tel:' + TEL, '📞 โทรสำนักงาน', '') + (D.lineUrl ? linkBtn(D.lineUrl, '💚 ถามฮูกใน LINE', 'green') : '') + '</div>');
+
+  /* ---------- กิจกรรม ---------- */
+  html += view('activities', '📸 กิจกรรม', 'ภาพกิจกรรมล่าสุด', D.activities.length
+    ? '<div class="cards">' + D.activities.map(function (a) {
+      return '<div class="card">' + (a.image ? '<img src="' + esc(a.image) + '" alt="">' : '') + '<h3>' + esc(a.title) + '</h3><div class="meta">' + esc(a.date)
+        + (a.district ? ' · อ.' + esc(a.district) : '') + '</div><p class="clamp">' + esc(a.summary) + '</p>' + (a.link ? '<div class="btns">' + linkBtn(a.link, '📰 อ่านข่าว') + '</div>' : '') + '</div>';
+    }).join('') + '</div>'
+    : '<div class="empty">ติดตามภาพกิจกรรมได้ที่ Facebook ของสำนักงาน</div><div class="btns">' + linkBtn('https://www.facebook.com/cddsongkhla', '📘 เปิด Facebook สพจ.สงขลา') + '</div>');
+
+  /* ---------- เกี่ยวกับเรา / ใสสะอาด ---------- */
+  html += view('about', '🦉 เกี่ยวกับเรา', 'สำนักงานพัฒนาชุมชนจังหวัดสงขลา',
+    (D.about.length ? D.about.map(function (x, i) { return acc(x, { open: i === 0 }); }).join('') : '<div class="empty">อยู่ระหว่างรวบรวมข้อมูล</div>')
+    + (D.stats.length ? '<h2 style="font-size:1.2rem;margin-top:18px">ตัวเลขสำคัญ</h2>' + D.stats.map(function (x) { return acc(x, {}); }).join('') : ''));
+  html += view('integrity', '✨ พช.ใสสะอาด', 'ความโปร่งใส ตรวจสอบได้',
+    D.integrity.length ? D.integrity.map(function (x) { return acc(x, { color: '#0F766E' }); }).join('') : '<div class="empty">อยู่ระหว่างรวบรวมข้อมูล</div>');
+
+  $('#main').innerHTML = html;
+  $('#foot').innerHTML = 'ข้อมูล ณ ' + esc(D.updated) + ' · ไม่เก็บข้อมูลส่วนบุคคลของผู้ใช้ · <a href="https://sites.google.com/view/pdpacdd">นโยบายคุ้มครองข้อมูลส่วนบุคคล</a>';
+  $('#bar').innerHTML = '<button type="button" data-go="home"><span class="i">🏠</span>หน้าแรก</button>'
+    + '<button type="button" data-go="services"><span class="i">🧭</span>บริการ</button>'
+    + '<a href="tel:' + TEL + '"><span class="i">📞</span>โทร</a>'
+    + (D.lineUrl ? '<a class="line" href="' + esc(D.lineUrl) + '"><span class="i">💚</span>LINE</a>' : '<button type="button" data-go="help"><span class="i">💬</span>ถาม</button>');
+
+  /* ---------- บริการ: แสดงรายการของหมวด ---------- */
+  var curGrp = '';
+  function showGroup(key) {
+    var g = groups.find(function (x) { return x.key === key; }) || groups[0];
+    if (!g) { $('#svc-list').innerHTML = '<div class="empty">อยู่ระหว่างรวบรวมข้อมูล</div>'; return; }
+    curGrp = g.key;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-grp]'), function (b) { b.classList.toggle('on', b.getAttribute('data-grp') === g.key); });
+    $('#svc-list').innerHTML = '<h2 style="font-size:1.2rem">' + g.emoji + ' ' + esc(g.name) + '</h2>'
+      + D.services.filter(function (s) { return s.group === g.key; }).map(function (s) { return acc(s, { color: g.color, contact: true }); }).join('');
+  }
+
+  /* ---------- กราฟ (วาดเมื่อหน้านั้นแสดง — กราฟในหน้าที่ซ่อนจะมีขนาด 0) ---------- */
+  var jptIdx = 0;
+  function drawJpt() {
+    var body = $('#jpt-body');
+    if (!J.length || !body || !$('#v-jpt').classList.contains('on')) return;
+    HK.destroyIn(body);
+    body.innerHTML = '<h3>' + esc(J[jptIdx].title) + '</h3>' + HK.jptBlock(J[jptIdx].detail);
+    HK.mount();
+  }
+  function drawProj() {
+    var pb = $('#proj-body');
+    if (!pb || !$('#v-projects').classList.contains('on')) return;
+    HK.destroyIn(pb);
+    pb.innerHTML = projBlock();
+    HK.mount();
+  }
+
+  /* ---------- เปลี่ยนหน้า (รองรับลิงก์ #services #svc-data #knn จาก LINE และปุ่มย้อนกลับ) ---------- */
+  var gs = window.google && google.script && google.script.history ? google.script : null;
+  var cur = '';
+  function route(hash, push) {
+    hash = String(hash || '').replace(/^#/, '');
+    var grp = /^svc-(.+)$/.exec(hash);
+    var id = grp ? 'services' : hash;
+    if (!document.getElementById('v-' + id)) id = 'home';
+    Array.prototype.forEach.call(document.querySelectorAll('.view'), function (v) { v.classList.toggle('on', v.id === 'v-' + id); });
+    Array.prototype.forEach.call(document.querySelectorAll('#bar [data-go]'), function (b) { b.classList.toggle('on', b.getAttribute('data-go') === id); });
+    if (id === 'services') showGroup(grp ? grp[1] : curGrp);
+    if (id === 'jpt') drawJpt();
+    if (id === 'projects') drawProj();
+    if (cur !== id) window.scrollTo(0, 0);
+    cur = id;
+    if (push) {
+      var h = id === 'home' ? '' : (id === 'services' && curGrp ? 'svc-' + curGrp : id);
+      try { if (gs) gs.history.push(null, null, h); else if (location.hash.replace('#', '') !== h) history.pushState(null, '', h ? '#' + h : location.pathname + location.search); } catch (e) { /* ไม่สำคัญ */ }
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]');
+    if (g) { e.preventDefault(); route(g.getAttribute('data-go'), true); return; }
+    var k = e.target.closest('[data-grp]');
+    if (k) { showGroup(k.getAttribute('data-grp')); route('svc-' + k.getAttribute('data-grp'), true); $('#svc-list').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+    var j = e.target.closest('#jpt-tabs button');
+    if (j) {
+      jptIdx = Number(j.getAttribute('data-i'));
+      Array.prototype.forEach.call(document.querySelectorAll('#jpt-tabs button'), function (x) { x.classList.toggle('on', x === j); });
+      drawJpt();
+    }
+  });
+  if (gs) {
+    gs.history.setChangeHandler(function (ev) { route(ev.location && ev.location.hash, false); });
+    try { gs.url.getLocation(function (loc) { route(loc.hash, false); }); } catch (e) { route('', false); }
+  } else {
+    window.addEventListener('popstate', function () { route(location.hash, false); });
+    route(location.hash, false);
+  }
+
+  /* ---------- ขนาดตัวอักษร (3 ระดับ จำไว้ในเครื่อง) + โหมดมืด ---------- */
+  function setFs(d) {
+    var v = Math.max(0, Math.min(2, (Number(document.documentElement.getAttribute('data-fs')) || 0) + d));
+    if (v) document.documentElement.setAttribute('data-fs', String(v)); else document.documentElement.removeAttribute('data-fs');
+    try { localStorage.setItem('hk-fs', v ? String(v) : ''); } catch (e) { /* ไม่เป็นไร */ }
+    drawJpt(); drawProj();
+  }
+  $('#fs-up').addEventListener('click', function () { setFs(1); });
+  $('#fs-down').addEventListener('click', function () { setFs(-1); });
+  HK.themeButton($('#theme-btn'), function () { drawJpt(); drawProj(); HK.mount(); });
+}
+(function () {
+  // GitHub Pages: โหลดข้อมูลจาก Apps Script · แสดงข้อมูลที่จำไว้ (ไม่เกิน 6 ชั่วโมง) ทันที แล้วอัปเดตไว้ใช้ครั้งถัดไป
+  var API = 'https://script.google.com/macros/s/AKfycbzSwHMndhctRNFIr2gIrahEvCgMmBDvjIj7WvEqvFOWBtFrwcc-BQ1SUk79wgc0MRGC/exec';
+  var box = document.getElementById('main');
+  var cached = null;
+  try { cached = JSON.parse(localStorage.getItem('hk-pub') || 'null'); } catch (e) { cached = null; }
+  var fresh = cached && cached.at && Date.now() - cached.at < 6 * 3600000 ? cached.data : null;
+  if (fresh) main(fresh); else box.innerHTML = '<div class="empty" style="margin-top:30px;font-size:1.1rem">⏳ กำลังโหลดข้อมูล…</div>';
+  fetch(API + '?api=public', { redirect: 'follow' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) {
+      try { localStorage.setItem('hk-pub', JSON.stringify({ at: Date.now(), data: d })); } catch (e) { /* เต็ม/ปิดไว้ */ }
+      if (!fresh) main(d);
+    })
+    .catch(function () {
+      if (!fresh) box.innerHTML = '<div class="empty" style="margin-top:30px">โหลดข้อมูลไม่สำเร็จ ลองใหม่อีกครั้ง<br><br><a class="btn" href="' + API + '?app=public">เปิดหน้าเว็บสำรอง</a></div>';
+    });
+})();
+</script>
+</body>
+</html>
